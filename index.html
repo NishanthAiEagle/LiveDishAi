@@ -979,7 +979,7 @@ function loadModelAndAR(d, vw, arBadge, scaleInfo, arBtnWrap, photoWrap) {
       const dim = mv.getDimensions();
       console.log(`[AR] ${d.name} natural dims:`, dim, `| applied scale: ${s}`);
     }
-    photoWrap.style.display = 'none';
+   photoWrap.style.display = 'none';
     mv.style.zIndex      = '2';
     mv.style.opacity     = '1';
     mv.style.pointerEvents = 'auto';
@@ -987,14 +987,66 @@ function loadModelAndAR(d, vw, arBadge, scaleInfo, arBtnWrap, photoWrap) {
     arBtnWrap.style.display = 'flex';
     btn.disabled  = false;
     btn.innerHTML = '✦ Launch AR';
+
+    // Lift steam canvas above model-viewer so it renders over the 3D scene
+    const steamCanvas = vw.querySelector('.steam-canvas');
+    if (steamCanvas) steamCanvas.style.zIndex = '8';
+
     mv.activateAR();
+
     mv.addEventListener('ar-status', (e) => {
+      // Pause steam while AR is active (device camera is fullscreen)
+      // Resume when AR ends so wisps show over the 3D preview again
+      if (e.detail.status === 'session-started') {
+        if (steamCanvas && steamCanvas._stopSteam) steamCanvas._stopSteam();
+      }
       if (e.detail.status === 'failed' || e.detail.status === 'not-presenting') {
         btn.disabled  = false;
         btn.innerHTML = '✶ View in AR';
+        // Restart steam over the 3D viewer after AR session ends
+        if (steamCanvas) {
+          steamCanvas._stopSteam = null;
+          const vwEl = document.getElementById('modal-viewer-wrap');
+          const arBadgeEl = document.getElementById('mv-ar-badge');
+          // Re-attach and restart the draw loop on the existing canvas
+          (function restartDraw() {
+            const ctx = steamCanvas.getContext('2d');
+            let particles = [];
+            const MAX_PARTICLES = 14;
+            const W = steamCanvas.width;
+            const H = steamCanvas.height;
+            function draw() {
+              ctx.clearRect(0, 0, W, H);
+              if (particles.length < MAX_PARTICLES && Math.random() < 0.18) {
+                particles.push({
+                  x: W*0.5+(Math.random()-0.5)*W*0.28, y: H*0.72,
+                  vy: -(0.28+Math.random()*0.38), vx: (Math.random()-0.5)*0.18,
+                  life:0, maxL:180+Math.random()*140, r:6+Math.random()*14,
+                  phase:Math.random()*Math.PI*2, sway:(Math.random()-0.5)*0.012
+                });
+              }
+              particles = particles.filter(p => {
+                p.life++; p.phase+=p.sway;
+                p.x+=p.vx+Math.sin(p.phase*3.5)*0.45; p.y+=p.vy; p.r+=0.06;
+                const t=p.life/p.maxL;
+                const raw=t<0.15?t/0.15:t<0.65?1:1-(t-0.65)/0.35;
+                const alpha=Math.max(0,Math.min(1,raw))*0.28;
+                const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);
+                g.addColorStop(0,`rgba(255,252,245,${alpha})`);
+                g.addColorStop(0.5,`rgba(255,248,235,${alpha*0.55})`);
+                g.addColorStop(1,`rgba(255,245,225,0)`);
+                ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+                ctx.fillStyle=g; ctx.fill();
+                return p.life<p.maxL;
+              });
+              const raf = requestAnimationFrame(draw);
+              steamCanvas._stopSteam = () => cancelAnimationFrame(raf);
+            }
+            draw();
+          })();
+        }
       }
-    }, { once: true });
-  });
+    }); // NOTE: remove the { once: true } so it catches both session-started and not-presenting
 
   mv.addEventListener('error', () => {
     btn.disabled  = false;
