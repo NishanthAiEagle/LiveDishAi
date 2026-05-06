@@ -36,6 +36,7 @@
       --shadow-deep: rgba(28,17,8,0.22);
     }
 
+    /* ── WASHI TEXTURE BACKGROUND ── */
     html { scroll-behavior: smooth; }
 
     body {
@@ -47,6 +48,7 @@
       min-height: 100svh;
     }
 
+    /* ── SEIGAIHA (wave) PATTERN SVG ── */
     .seigaiha-bg {
       position: absolute;
       inset: 0;
@@ -55,30 +57,40 @@
       pointer-events: none;
     }
 
+    /* ── HEADER ── */
     .site-header {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(175deg, #1c1108 0%, #2e1c0e 45%, #1c1108 100%);
+      background:
+        linear-gradient(175deg, #1c1108 0%, #2e1c0e 45%, #1c1108 100%);
       color: #f5ede0;
       text-align: center;
       padding: max(env(safe-area-inset-top), 2.5rem) 1rem 2.5rem;
     }
+
     .site-header .seigaiha-bg { opacity: 0.07; }
+
+    /* Ink wash gradient overlay */
     .site-header::before {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background:
         radial-gradient(ellipse 80% 60% at 20% 80%, rgba(139,26,26,0.18) 0%, transparent 70%),
         radial-gradient(ellipse 60% 80% at 80% 20%, rgba(154,120,32,0.14) 0%, transparent 60%);
       pointer-events: none;
     }
+
+    /* Torii-red top border */
     .site-header::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0; height: 3px;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
       background: linear-gradient(90deg, transparent, var(--crimson-mid), var(--gold-lt), var(--crimson-mid), transparent);
     }
 
+    /* Decorative mon (family crest) circle */
     .header-mon {
       width: 52px; height: 52px;
       border: 1.5px solid rgba(196,160,48,0.5);
@@ -103,6 +115,7 @@
       color: rgba(245,237,224,0.4);
       margin-bottom: 10px;
     }
+
     .header-title {
       font-family: 'Cinzel', serif;
       font-size: clamp(30px, 6.5vw, 54px);
@@ -115,6 +128,7 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     .header-title-jp {
       font-family: 'Noto Serif JP', serif;
       font-size: clamp(18px, 4vw, 28px);
@@ -124,6 +138,7 @@
       margin-bottom: 14px;
       display: block;
     }
+
     .header-sub {
       font-size: 11px;
       letter-spacing: 4px;
@@ -132,6 +147,7 @@
       margin-bottom: 20px;
     }
 
+    /* Ink brush stroke divider */
     .brush-divider {
       width: 120px; height: 2px;
       background: linear-gradient(90deg, transparent, var(--crimson-mid), transparent);
@@ -166,6 +182,7 @@
     }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.7)} }
 
+    /* Lang picker */
     #language-picker { position: relative; z-index: 10; margin-bottom: 18px; }
     #lang-select {
       background: rgba(245,237,224,0.08);
@@ -180,6 +197,7 @@
     }
     #lang-select option { background: #1c1108; color: #f5ede0; }
 
+    /* ── TABS ── */
     .tabs-wrap {
       position: sticky; top: 0; z-index: 100;
       background: var(--washi);
@@ -215,9 +233,19 @@
       border-radius: 1px;
       position: relative;
     }
-    .tab-btn:hover { border-color: var(--crimson); color: var(--crimson); background: rgba(139,26,26,0.04); }
-    .tab-btn.active { background: var(--crimson); color: var(--washi); border-color: var(--crimson); box-shadow: 0 2px 12px rgba(139,26,26,0.3); }
+    .tab-btn:hover {
+      border-color: var(--crimson);
+      color: var(--crimson);
+      background: rgba(139,26,26,0.04);
+    }
+    .tab-btn.active {
+      background: var(--crimson);
+      color: var(--washi);
+      border-color: var(--crimson);
+      box-shadow: 0 2px 12px rgba(139,26,26,0.3);
+    }
 
+    /* ── MAIN ── */
     .main { max-width: 740px; margin: 0 auto; padding: 1.5rem 1rem 5rem; }
 
     .state-box { text-align: center; padding: 4rem 1rem; color: var(--ink-faint); }
@@ -232,6 +260,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .state-box p { font-size: 13px; font-family: 'Noto Serif JP', serif; letter-spacing: 2px; }
 
+    /* Section label — ink brush style */
     .section-label {
       display: flex; align-items: center; gap: 14px;
       margin: 2rem 0 1rem;
@@ -241,9 +270,18 @@
       text-transform: uppercase;
       color: var(--crimson);
     }
-    .section-label span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,26,26,0.3), transparent); }
-    .section-label::before { content: '◈'; font-size: 10px; color: var(--gold); flex-shrink: 0; }
+    .section-label span {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(139,26,26,0.3), transparent);
+    }
+    .section-label::before {
+      content: '◈';
+      font-size: 10px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
 
+    /* ── MENU CARDS ── */
     .items-grid { display: flex; flex-direction: column; gap: 10px; }
 
     .menu-card {
@@ -258,6 +296,8 @@
       position: relative;
       overflow: hidden;
     }
+
+    /* Subtle seigaiha watermark on each card */
     .menu-card::before {
       content: '';
       position: absolute;
@@ -267,6 +307,7 @@
       opacity: 0.05;
       pointer-events: none;
     }
+
     .menu-card:hover {
       border-left-color: var(--crimson);
       transform: translateX(3px);
@@ -275,6 +316,7 @@
     }
 
     .card-row { display: flex; gap: 14px; align-items: flex-start; }
+
     .card-thumb {
       width: 68px; height: 68px; flex-shrink: 0;
       border-radius: 1px;
@@ -284,10 +326,13 @@
       font-size: 32px;
       position: relative; overflow: hidden;
     }
-    .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card-thumb img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
     .ar-pill {
       position: absolute; bottom: 2px; right: 2px;
-      background: var(--crimson); color: var(--washi);
+      background: var(--crimson);
+      color: var(--washi);
       font-size: 7px; letter-spacing: 1px;
       padding: 2px 5px;
       font-family: 'Cinzel', serif;
@@ -295,34 +340,77 @@
     }
 
     .card-body { flex: 1; min-width: 0; }
-    .name-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
-    .dish-name { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; color: var(--ink); letter-spacing: 0.02em; }
-    .dish-jp { font-family: 'Noto Serif JP', serif; font-size: 12px; font-weight: 300; color: var(--ink-faint); letter-spacing: 1px; }
+
+    .name-row {
+      display: flex; align-items: baseline; gap: 10px;
+      flex-wrap: wrap; margin-bottom: 4px;
+    }
+    .dish-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px; font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    .dish-jp {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 12px; font-weight: 300;
+      color: var(--ink-faint);
+      letter-spacing: 1px;
+    }
 
     .tags-row { display: flex; gap: 5px; flex-wrap: wrap; margin: 5px 0 7px; }
-    .tag { font-size: 10px; padding: 2px 9px; font-family: 'Noto Sans JP', sans-serif; font-weight: 500; letter-spacing: 0.5px; border-radius: 1px; }
+    .tag {
+      font-size: 10px; padding: 2px 9px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500; letter-spacing: 0.5px;
+      border-radius: 1px;
+    }
     .tag-veg  { background: var(--sage-lt); color: var(--sage); border: 1px solid rgba(74,103,65,0.2); }
     .tag-new  { background: rgba(139,26,26,0.08); color: var(--crimson); border: 1px solid rgba(139,26,26,0.2); }
     .tag-dotd { background: rgba(154,120,32,0.1); color: var(--gold); border: 1px solid rgba(154,120,32,0.25); }
 
-    .dish-desc { font-size: 12.5px; color: var(--ink-light); line-height: 1.65; margin-bottom: 10px; font-family: 'Noto Sans JP', sans-serif; }
+    .dish-desc {
+      font-size: 12.5px;
+      color: var(--ink-light);
+      line-height: 1.65;
+      margin-bottom: 10px;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
     .card-footer { display: flex; align-items: center; justify-content: space-between; }
-    .dish-price { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--ink); }
-    .price-sym { font-family: 'Noto Sans JP', sans-serif; font-size: 12px; color: var(--ink-faint); margin-right: 1px; }
+    .dish-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600;
+      color: var(--ink);
+    }
+    .price-sym {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px; color: var(--ink-faint);
+      margin-right: 1px;
+    }
 
     .ar-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      background: var(--ink); color: var(--washi);
-      border: none; padding: 8px 16px;
+      background: var(--ink);
+      color: var(--washi);
+      border: none;
+      padding: 8px 16px;
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 11px; letter-spacing: 1px;
       cursor: pointer;
       transition: background 0.18s, box-shadow 0.18s;
       -webkit-tap-highlight-color: transparent;
-      min-height: 44px; border-radius: 1px;
+      min-height: 44px;
+      border-radius: 1px;
       position: relative;
     }
-    .ar-btn::before { content: ''; position: absolute; inset: 0; background: var(--crimson); opacity: 0; transition: opacity 0.18s; }
+    .ar-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--crimson);
+      opacity: 0;
+      transition: opacity 0.18s;
+    }
     .ar-btn:hover::before { opacity: 1; }
     .ar-btn:hover { box-shadow: 0 4px 14px rgba(139,26,26,0.4); }
     .ar-btn > * { position: relative; z-index: 1; }
@@ -337,7 +425,9 @@
       padding: 0;
       backdrop-filter: blur(2px);
     }
-    @media (min-width: 540px) { .modal-overlay { align-items: center; padding: 1.5rem; } }
+    @media (min-width: 540px) {
+      .modal-overlay { align-items: center; padding: 1.5rem; }
+    }
     .modal-overlay.open { display: flex; }
 
     .modal-card {
@@ -351,7 +441,12 @@
       animation: slideUp 0.28s cubic-bezier(0.22,1,0.36,1);
     }
     @media (min-width: 540px) {
-      .modal-card { border-top: none; border: 1px solid rgba(139,26,26,0.2); border-radius: 2px; animation: fadeIn 0.22s ease; }
+      .modal-card {
+        border-top: none;
+        border: 1px solid rgba(139,26,26,0.2);
+        border-radius: 2px;
+        animation: fadeIn 0.22s ease;
+      }
     }
     @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: none; opacity: 1; } }
     @keyframes fadeIn  { from { opacity: 0; transform: scale(0.96) translateY(8px); } to { opacity: 1; transform: none; } }
@@ -361,7 +456,11 @@
       background: linear-gradient(160deg, #120c05 0%, #1e1208 50%, #120c05 100%);
       position: relative; overflow: hidden;
     }
+
+    /* Seigaiha on modal header */
     .modal-viewer-wrap .seigaiha-bg { opacity: 0.08; }
+
+    /* Gold frame corners on modal viewer */
     .modal-viewer-wrap::before {
       content: '';
       position: absolute; inset: 12px;
@@ -417,32 +516,48 @@
       transition: background 0.15s, border-color 0.15s;
       font-family: serif;
     }
-    .modal-close:hover { background: var(--crimson); border-color: var(--crimson); color: var(--washi); }
+    .modal-close:hover {
+      background: var(--crimson);
+      border-color: var(--crimson);
+      color: var(--washi);
+    }
 
     .modal-body { padding: 1.5rem 1.6rem 2rem; }
-    .modal-name { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 600; letter-spacing: 0.05em; color: var(--ink); margin-bottom: 2px; }
-    .modal-jp { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 300; color: var(--ink-faint); letter-spacing: 3px; margin-bottom: 12px; }
-    .modal-desc { font-size: 13.5px; color: var(--ink-light); line-height: 1.75; padding: 12px 16px; border-left: 3px solid var(--crimson); background: rgba(139,26,26,0.04); margin-bottom: 18px; font-family: 'Noto Sans JP', sans-serif; }
-    .modal-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(139,26,26,0.15); }
-    .modal-price { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: var(--ink); }
 
-    /* ── STEAM CANVAS ── */
-    /* The canvas itself is fully transparent — only the drawn wisps are visible.
-       clip-path constrains ALL drawing to a bowl-mouth ellipse so wisps appear
-       to rise from the dish surface. Adjust the ellipse values per-dish if needed. */
-    .steam-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 5;
-      /* Default clip: ellipse centred on bottom-centre of viewer, covering bowl rim upward.
-         cx=50%  → horizontal centre of viewer
-         cy=77%  → bowl rim height (adjust if your dish image is composed differently)
-         rx=38%  → half-width of bowl opening
-         ry=55%  → how far up the steam column reaches */
-      clip-path: ellipse(38% 55% at 50% 77%);
+    .modal-name {
+      font-family: 'Cinzel', serif;
+      font-size: 26px; font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .modal-jp {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 14px; font-weight: 300;
+      color: var(--ink-faint);
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+    .modal-desc {
+      font-size: 13.5px;
+      color: var(--ink-light);
+      line-height: 1.75;
+      padding: 12px 16px;
+      border-left: 3px solid var(--crimson);
+      background: rgba(139,26,26,0.04);
+      margin-bottom: 18px;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .modal-footer {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid rgba(139,26,26,0.15);
+    }
+    .modal-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px; font-weight: 600;
+      color: var(--ink);
     }
 
     /* ── FOOTER ── */
@@ -457,10 +572,19 @@
       background: rgba(245,237,224,0.5);
       position: relative;
     }
-    .site-footer::before { content: '✿  ✿  ✿'; display: block; color: var(--crimson); opacity: 0.4; font-size: 14px; letter-spacing: 8px; margin-bottom: 8px; }
+    .site-footer::before {
+      content: '✿  ✿  ✿';
+      display: block;
+      color: var(--crimson);
+      opacity: 0.4;
+      font-size: 14px;
+      letter-spacing: 8px;
+      margin-bottom: 8px;
+    }
 
     .menu-card.unavailable { opacity: 0.4; pointer-events: none; }
 
+    /* FunZone btn */
     .funzone-btn {
       display: inline-flex; align-items: center; gap: 6px;
       background: linear-gradient(135deg, var(--crimson), var(--gold));
@@ -546,10 +670,8 @@
 </footer>
 
 <script>
-/* ─────────────────────────────────────────────────────────────────
-   DISH IMAGE PATHS
-───────────────────────────────────────────────────────────────── */
 const DISH_IMAGES = {
+
   'karamisoramen':    '3d-model/KaramisoRamen/karamisoramen.png',
   'shioramen':        '3d-model/ShioRamen/shioramen.png',
   'shoyuramen':       '3d-model/ShoyuRamen/shoyuramen.png',
@@ -566,55 +688,56 @@ const DISH_IMAGES = {
   'tempura':          '3d-model/Tempura/Tempura.png',
 };
 
-/* ─────────────────────────────────────────────────────────────────
-   LOCAL 3D ASSETS
-   data-effect: 'steam'  → hot dishes get wisp animation
-                null/''  → no steam (cold, fried, dessert dishes)
-───────────────────────────────────────────────────────────────── */
 const LOCAL_ASSETS = {
-  'karamisoramen': { folder: 'KaramisoRamen', file: 'KaramisoRamen', scale: 0.15, effect: 'steam' },
-  'shioramen':     { folder: 'ShioRamen',     file: 'ShioRamen',     scale: 0.2,  effect: 'steam' },
-  'shoyuramen':    { folder: 'ShoyuRamen',    file: 'ShoyuRamen',    scale: 0.2,  effect: 'steam' },
-  'tantanmen':     { folder: 'Tantanman',     file: 'Tantanman',     scale: 0.15, effect: 'steam' },
-  'agedashi tofu': { folder: 'Agedashi-Tofu', file: 'Agedashi-Tofu', scale: 0.15, effect: 'steam' },
-  'miso soup':     { folder: 'Miso-Soup',     file: 'Miso-Soup',     scale: 0.3,  effect: 'steam' },
-  'ramen':         { folder: 'Ramen',         file: 'Ramen',         scale: 0.2,  effect: 'steam' },
-  'edamame':          { folder: 'Edamame',          file: 'Edamame',          scale: 0.06 },
-  'gyoza':            { folder: 'Gyoza',            file: 'Gyoza',            scale: 0.3  },
-  'karaage':          { folder: 'Karaage',          file: 'Karaage',          scale: 0.15 },
-  'matcha ice cream': { folder: 'Matcha-Ice-Cream', file: 'Matcha-Ice-Cream', scale: 0.3  },
-  'salmon sashimi':   { folder: 'Salmon-Sashimi',   file: 'Salmon-Sashimi',   scale: 0.3  },
+   'karamisoramen': { folder: 'KaramisoRamen', file: 'KaramisoRamen', scale: 0.15 },
+  'shioramen':     { folder: 'ShioRamen',     file: 'ShioRamen',     scale: 0.2  },
+  'shoyuramen':    { folder: 'ShoyuRamen',    file: 'ShoyuRamen',    scale: 0.2  },
+  'tantanmen':     { folder: 'Tantanman',     file: 'Tantanman',     scale: 0.15 },
+  'agedashi tofu':    { folder: 'Agedashi-Tofu',    file: 'Agedashi-Tofu',    scale: 0.15 },
+  'edamame':          { folder: 'Edamame',           file: 'Edamame',          scale: 0.06 },
+  'gyoza':            { folder: 'Gyoza',             file: 'Gyoza',            scale: 0.3  },
+  'karaage':          { folder: 'Karaage',           file: 'Karaage',          scale: 0.15 },
+  'matcha ice cream': { folder: 'Matcha-Ice-Cream',  file: 'Matcha-Ice-Cream', scale: 0.3  },
+  'miso soup':        { folder: 'Miso-Soup',         file: 'Miso-Soup',        scale: 0.3  },
+  'ramen':            { folder: 'Ramen',             file: 'Ramen',            scale: 0.2  },
+  'salmon sashimi':   { folder: 'Salmon-Sashimi',    file: 'Salmon-Sashimi',   scale: 0.3  },
   'takoyaki':         { folder: 'Takoyaki',          file: 'Takoyaki',         scale: 0.5  },
   'tempura':          { folder: 'Tempura',           file: 'Tempura',          scale: 0.3  },
 };
 const ASSETS_BASE = '3d-model';
 
 function getLocalAssets(dishName) {
-  const key   = (dishName || '').toLowerCase().trim();
+  const key = (dishName || '').toLowerCase().trim();
   const entry = LOCAL_ASSETS[key];
-  if (!entry) return { posterPath: DISH_IMAGES[key] || '', glbPath: '', effect: null };
+  if (!entry) return { posterPath: DISH_IMAGES[key] || '', glbPath: '' };
   const base = `${ASSETS_BASE}/${entry.folder}/${entry.file}`;
   return {
     posterPath: DISH_IMAGES[key] || `${base}.png`,
     glbPath:    `${base}.glb`,
     usdzPath:   `${base}.usdz`,
     scale:      entry.scale,
-    effect:     entry.effect || null,
   };
 }
 
-/* ─────────────────────────────────────────────────────────────────
-   SHEET / DATA CONFIG
-───────────────────────────────────────────────────────────────── */
 const SHEET_ID  = '1QAReLCzWLQEfNyY9V6Cg5VbGPqmbXh4XCZ_RCQSRlz0';
 const SHEET_GID = '0';
 const CSV_URL   = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
 
 const EMOJI_MAP = {
-  'karamisoramen': '🍜', 'shioramen': '🍜', 'shoyuramen': '🍜', 'tantanmen': '🍜',
-  'gyoza': '🥟', 'edamame': '🫘', 'karaage': '🍗', 'miso soup': '🍵',
-  'takoyaki': '🐙', 'agedashi tofu': '🫕', 'ramen': '🍜',
-  'salmon sashimi': '🐟', 'tempura': '🍤', 'matcha ice cream': '🍦',
+ 'karamisoramen': '🍜',
+  'shioramen':     '🍜',
+  'shoyuramen':    '🍜',
+  'tantanmen':     '🍜',
+  'gyoza':            '🥟',
+  'edamame':          '🫘',
+  'karaage':          '🍗',
+  'miso soup':        '🍵',
+  'takoyaki':         '🐙',
+  'agedashi tofu':    '🫕',
+  'ramen':            '🍜',
+  'salmon sashimi':   '🐟',
+  'tempura':          '🍤',
+  'matcha ice cream': '🍦',
 };
 
 const I18N = {
@@ -627,21 +750,18 @@ const I18N = {
 };
 
 const CAT_LABELS = {
-  all:     { en:'All',      jp:'すべて',    kn:'ಎಲ್ಲವೂ',        ta:'அனைத்தும்',    ml:'എല്ലാം',         te:'అన్నీ' },
-  starter: { en:'Starters', jp:'スターター', kn:'ಆರಂಭಿಕಗಳು',    ta:'துவக்கிகள்',   ml:'സ്റ്റാർട്ടറുകൾ', te:'ప్రారంభకాలు' },
-  ramen:   { en:'Ramen',    jp:'ラーメン',   kn:'ರಾಮೆನ್',        ta:'ராமன்',        ml:'രാമെൻ',          te:'రామెన్' },
-  sushi:   { en:'Sushi',    jp:'寿司',       kn:'ಸುಶಿ',          ta:'சுஷி',         ml:'സുഷി',           te:'సుషీ' },
-  rice:    { en:'Mains',    jp:'メイン',     kn:'ಮುಖ್ಯ ಆಹಾರ',   ta:'முக்கிய உணவு', ml:'പ്രധാന ഭക്ഷണം',  te:'ప్రధాన వంటకాలు' },
-  drinks:  { en:'Desserts', jp:'デザート',   kn:'ಸಿಹಿತಿಂಡಿಗಳು', ta:'இனிப்புகள்',   ml:'ഡെസേർട്ടുകൾ',    te:'తీపి వంటకాలు' },
+  all:     { en:'All',        jp:'すべて',    kn:'ಎಲ್ಲವೂ',        ta:'அனைத்தும்',     ml:'എല്ലാം',         te:'అన్నీ' },
+  starter: { en:'Starters',   jp:'スターター', kn:'ಆರಂಭಿಕಗಳು',    ta:'துவக்கிகள்',    ml:'സ്റ്റാർട്ടറുകൾ', te:'ప్రారంభకాలు' },
+  ramen:   { en:'Ramen',      jp:'ラーメン',   kn:'ರಾಮೆನ್',        ta:'ராமன்',         ml:'രാമെൻ',          te:'రామెన్' },
+  sushi:   { en:'Sushi',      jp:'寿司',       kn:'ಸುಶಿ',          ta:'சுஷி',          ml:'സുഷി',           te:'సుషీ' },
+  rice:    { en:'Mains',      jp:'メイン',     kn:'ಮುಖ್ಯ ಆಹಾರ',   ta:'முக்கிய உணவு',  ml:'പ്രധാന ഭക്ഷണം',  te:'ప్రధాన వంటకాలు' },
+  drinks:  { en:'Desserts',   jp:'デザート',   kn:'ಸಿಹಿತಿಂಡಿಗಳು', ta:'இனிப்புகள்',    ml:'ഡെസേർട്ടുകൾ',    te:'తీపి వంటకాలు' },
 };
 
 let allDishes = [], rawRows = [], activeCategory = 'all', currentLang = 'en';
 const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
-/* ─────────────────────────────────────────────────────────────────
-   CSV PARSING
-───────────────────────────────────────────────────────────────── */
 function parseCSV(text) {
   const lines = text.trim().split('\n');
   if (lines.length < 2) return [];
@@ -666,33 +786,28 @@ function splitLine(line) {
 
 function rowToDish(row) {
   const truthy = v => ['true','yes','1'].includes((v||'').toLowerCase());
-  const sfx    = currentLang !== 'en' ? `_${currentLang}` : '';
-  const desc   = row[`description${sfx}`] || row['description'] || '';
-  const name   = row[`name${sfx}`]        || row['name']        || '';
-  const local  = getLocalAssets(row['name'] || name);
+  const sfx  = currentLang !== 'en' ? `_${currentLang}` : '';
+  const desc = row[`description${sfx}`] || row['description'] || '';
+  const name = row[`name${sfx}`]        || row['name']        || '';
+  const local = getLocalAssets(row['name'] || name);
   return {
-    id:         row['id']      || '',
-    name,
-    category:   (row['category'] || 'other').toLowerCase(),
-    jp:         row['jp_name'] || '',
+    id:        row['id']       || '',
+    name, category: (row['category'] || 'other').toLowerCase(),
+    jp:        row['jp_name']  || '',
     desc,
-    price:      parseInt(row['price'] || '0', 10),
-    veg:        truthy(row['veg']),
-    dotd:       truthy(row['dish of the day'] || row['dotd']),
-    isNew:      truthy(row['new']),
-    available:  truthy(row['available']),
-    glbPath:    local.glbPath,
-    usdzPath:   local.usdzPath,
+    price:     parseInt(row['price'] || '0', 10),
+    veg:       truthy(row['veg']),
+    dotd:      truthy(row['dish of the day'] || row['dotd']),
+    isNew:     truthy(row['new']),
+    available: truthy(row['available']),
+    glbPath:   local.glbPath,
+    usdzPath:  local.usdzPath,
     posterPath: local.posterPath,
-    scale:      local.scale,
-    effect:     local.effect,   // 'steam' | null
-    emoji:      EMOJI_MAP[(row['name']||'').toLowerCase()] || '🍽️',
+    scale:     local.scale,
+    emoji:     EMOJI_MAP[(row['name']||'').toLowerCase()] || '🍽️',
   };
 }
 
-/* ─────────────────────────────────────────────────────────────────
-   RENDER HELPERS
-───────────────────────────────────────────────────────────────── */
 function tagHTML(d) {
   const t = I18N[currentLang] || I18N.en;
   return [
@@ -769,108 +884,9 @@ function renderItems() {
   );
 }
 
-/* ─────────────────────────────────────────────────────────────────
-   STEAM WISP ENGINE
-   ─ Canvas is invisible/transparent by itself; only painted wisps show.
-   ─ clip-path on .steam-canvas constrains ALL drawing to a bowl-mouth
-     ellipse, so wisps emerge only from where the dish surface is.
-   ─ Wisps spawn along the bowl rim (Y ≈ 72% of viewer height),
-     drift upward with gentle sine-wave sway, expand as they rise,
-     and fade in/out smoothly.
-   ─ rAF loop is stored on the canvas element so closeModal() can
-     cancel it cleanly — no leaked animation loops.
-───────────────────────────────────────────────────────────────── */
-function startSteam(container, insertBeforeEl) {
-  const canvas = document.createElement('canvas');
-  canvas.className = 'steam-canvas';
-  /* clip-path is already set in CSS (.steam-canvas).
-     Override here if you want per-dish tuning in the future:
-     canvas.style.clipPath = 'ellipse(38% 55% at 50% 77%)'; */
-  container.insertBefore(canvas, insertBeforeEl);
-
-  let W, H, raf;
-  let particles = [];
-  const MAX_PARTICLES = 14;
-
-  function resize() {
-    const rect = container.getBoundingClientRect();
-    W = canvas.width  = rect.width  || 360;
-    H = canvas.height = rect.height || 300;
-  }
-  resize();
-
-  /* Each wisp starts at bowl-rim height and floats upward */
-  function spawnParticle() {
-    return {
-      x:     W * 0.5 + (Math.random() - 0.5) * W * 0.28, // spread across bowl rim
-      y:     H * 0.72,                                     // bowl rim Y position
-      vy:    -(0.28 + Math.random() * 0.38),               // upward speed
-      vx:    (Math.random() - 0.5) * 0.18,                // gentle horizontal drift
-      life:  0,
-      maxL:  180 + Math.random() * 140,                    // lifespan in frames
-      r:     6   + Math.random() * 14,                    // starting radius
-      phase: Math.random() * Math.PI * 2,                 // sway phase offset
-      sway:  (Math.random() - 0.5) * 0.012,              // sway rate per frame
-    };
-  }
-
-  function draw() {
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, W, H);
-
-    /* Spawn new wisps probabilistically up to MAX */
-    if (particles.length < MAX_PARTICLES && Math.random() < 0.18) {
-      particles.push(spawnParticle());
-    }
-
-    particles = particles.filter(p => {
-      p.life++;
-      p.phase += p.sway;
-      p.x     += p.vx + Math.sin(p.phase * 3.5) * 0.45; // sinusoidal sway
-      p.y     += p.vy;
-      p.r     += 0.06; // wisps expand as they rise
-
-      /* Opacity arc: fast fade-in → hold → slow fade-out */
-      const t   = p.life / p.maxL;
-      const raw = t < 0.15 ? t / 0.15          // 0 → 1 over first 15%
-                : t < 0.65 ? 1                  // hold full opacity
-                : 1 - (t - 0.65) / 0.35;       // 1 → 0 over last 35%
-      const alpha = Math.max(0, Math.min(1, raw)) * 0.28; // max 28% opacity — keeps it subtle
-
-      /* Radial gradient: warm-white core fading to fully transparent edge */
-      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
-      g.addColorStop(0,   `rgba(255,252,245,${alpha})`);
-      g.addColorStop(0.5, `rgba(255,248,235,${alpha * 0.55})`);
-      g.addColorStop(1,   `rgba(255,245,225,0)`);
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = g;
-      ctx.fill();
-
-      return p.life < p.maxL; // remove when lifespan ends
-    });
-
-    raf = requestAnimationFrame(draw);
-  }
-
-  /* Attach stop handle + ResizeObserver to the canvas element itself
-     so closeModal() can reach them without extra closures */
-  canvas._stopSteam = () => cancelAnimationFrame(raf);
-  const ro = new ResizeObserver(resize);
-  ro.observe(container);
-  canvas._ro = ro;
-
-  draw();
-}
-
-/* ─────────────────────────────────────────────────────────────────
-   MODAL — OPEN
-───────────────────────────────────────────────────────────────── */
 function openModal(id) {
   const d = allDishes.find(x => x.id === id);
   if (!d) return;
-
   document.getElementById('modal-name').textContent = d.name;
   document.getElementById('modal-jp').textContent   = d.jp;
   document.getElementById('modal-desc').textContent = d.desc;
@@ -885,12 +901,9 @@ function openModal(id) {
   scaleInfo.textContent = '';
 
   const vw = document.getElementById('modal-viewer-wrap');
-
-  /* Clean up any previous modal content including steam canvas */
-  vw.querySelectorAll('.modal-photo, model-viewer, .no-model, .mv-loading-overlay, .mv-ar-btn-wrap, .steam-canvas')
+  vw.querySelectorAll('.modal-photo, model-viewer, .no-model, .mv-loading-overlay, .mv-ar-btn-wrap')
     .forEach(el => el.remove());
 
-  /* Dish photo / emoji fallback */
   const photoWrap = document.createElement('div');
   photoWrap.className = 'modal-photo';
   photoWrap.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;';
@@ -904,17 +917,6 @@ function openModal(id) {
   }
   vw.insertBefore(photoWrap, arBadge);
 
-  /* ── STEAM EFFECT ─────────────────────────────────────────────
-     d.effect is sourced from LOCAL_ASSETS[key].effect.
-     Set effect:'steam' on any hot dish in LOCAL_ASSETS above.
-     You can also add a 'steam' column to your Google Sheet and
-     read it in rowToDish() for sheet-driven control.
-  ────────────────────────────────────────────────────────────── */
-  if (d.effect === 'steam') {
-    startSteam(vw, arBadge);
-  }
-
-  /* AR launch button (only for dishes with a 3D model) */
   if (d.glbPath) {
     const arBtnWrap = document.createElement('div');
     arBtnWrap.className = 'mv-ar-btn-wrap';
@@ -939,9 +941,6 @@ function openModal(id) {
   document.body.style.overflow = 'hidden';
 }
 
-/* ─────────────────────────────────────────────────────────────────
-   MODAL — LOAD 3D MODEL & LAUNCH AR
-───────────────────────────────────────────────────────────────── */
 function loadModelAndAR(d, vw, arBadge, scaleInfo, arBtnWrap, photoWrap) {
   const btn = arBtnWrap.querySelector('.modal-ar-launch-btn');
   btn.disabled = true;
@@ -951,93 +950,81 @@ function loadModelAndAR(d, vw, arBadge, scaleInfo, arBtnWrap, photoWrap) {
   mv.setAttribute('src', d.glbPath);
   if (isIOS && d.usdzPath) mv.setAttribute('ios-src', d.usdzPath);
 
+  // Scale: applied in 3D preview only. AR uses ar-scale="auto" so Scene Viewer
+  // / WebXR auto-fits the model to real-world size from GLTF units — fastest & most accurate.
   const s = (d.scale ?? 1).toFixed(6);
-  mv.setAttribute('scale',              `${s} ${s} ${s}`);
-  mv.setAttribute('ar',                '');
-  mv.setAttribute('ar-modes',          'webxr scene-viewer quick-look');
-  mv.setAttribute('ar-placement',      'floor');
-  mv.setAttribute('ar-scale',          'auto');
-  mv.setAttribute('camera-controls',   '');
-  mv.setAttribute('camera-orbit',      '0deg 75deg auto');
-  mv.setAttribute('min-camera-orbit',  'auto 10deg 0.1m');
-  mv.setAttribute('max-camera-orbit',  'auto 90deg 10m');
-  mv.setAttribute('field-of-view',     'auto');
-  mv.setAttribute('shadow-intensity',  '1');
-  mv.setAttribute('shadow-softness',   '0.8');
-  mv.setAttribute('environment-image', 'neutral');
-  mv.setAttribute('exposure',          '1.1');
+  mv.setAttribute('scale',             `${s} ${s} ${s}`);
+  mv.setAttribute('ar',               '');
+  mv.setAttribute('ar-modes',         'webxr scene-viewer quick-look');
+  mv.setAttribute('ar-placement',     'floor');
+  mv.setAttribute('ar-scale',         'auto');          // auto-fit to environment
+  mv.setAttribute('camera-controls',  '');
+  mv.setAttribute('camera-orbit',     '0deg 75deg auto');
+  mv.setAttribute('min-camera-orbit', 'auto 10deg 0.1m');
+  mv.setAttribute('max-camera-orbit', 'auto 90deg 10m');
+  mv.setAttribute('field-of-view',    'auto');
+  mv.setAttribute('shadow-intensity', '1');
+  mv.setAttribute('shadow-softness',  '0.8');
+  mv.setAttribute('environment-image','neutral');
+  mv.setAttribute('exposure',         '1.1');
   mv.setAttribute('interaction-prompt','none');
-  mv.setAttribute('loading',           'eager');
-  mv.setAttribute('reveal',            'auto');
-  mv.setAttribute('touch-action',      'pan-y');
+  mv.setAttribute('loading',          'eager');
+  mv.setAttribute('reveal',           'auto');
+  mv.setAttribute('touch-action',     'pan-y');          // allow pinch-zoom on model
   mv.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;background:transparent;touch-action:pan-y pinch-zoom;z-index:-1;opacity:0;pointer-events:none;';
 
+  // Insert into DOM AFTER all attributes are set (Scene Viewer reads scale from launch URL)
   vw.insertBefore(mv, arBadge);
 
   mv.addEventListener('load', () => {
+    // Log natural dimensions so you can calibrate LOCAL_ASSETS scale values
     if (mv.getDimensions) {
       const dim = mv.getDimensions();
       console.log(`[AR] ${d.name} natural dims:`, dim, `| applied scale: ${s}`);
     }
+
+    // Show the 3D model in the viewer panel (interactive with pinch-zoom)
     photoWrap.style.display = 'none';
-    mv.style.zIndex      = '2';
-    mv.style.opacity     = '1';
+    mv.style.zIndex = '2';
+    mv.style.opacity = '1';
     mv.style.pointerEvents = 'auto';
     arBadge.classList.add('visible');
     arBtnWrap.style.display = 'flex';
-    btn.disabled  = false;
+    btn.disabled = false;
     btn.innerHTML = '✦ Launch AR';
+
+    // Auto-launch AR immediately
     mv.activateAR();
+
     mv.addEventListener('ar-status', (e) => {
       if (e.detail.status === 'failed' || e.detail.status === 'not-presenting') {
-        btn.disabled  = false;
+        btn.disabled = false;
         btn.innerHTML = '✶ View in AR';
       }
     }, { once: true });
   });
 
   mv.addEventListener('error', () => {
-    btn.disabled  = false;
+    btn.disabled = false;
     btn.innerHTML = '⚠ Retry';
     mv.remove();
   });
 }
 
-/* ─────────────────────────────────────────────────────────────────
-   MODAL — CLOSE  (cancels steam rAF loop cleanly)
-───────────────────────────────────────────────────────────────── */
 function closeModal() {
-  /* Stop steam animation and disconnect its ResizeObserver */
-  const steamCanvas = document.querySelector('#modal-viewer-wrap .steam-canvas');
-  if (steamCanvas) {
-    if (steamCanvas._stopSteam) steamCanvas._stopSteam();
-    if (steamCanvas._ro)        steamCanvas._ro.disconnect();
-  }
-
   const mvEl = document.querySelector('#modal-viewer-wrap model-viewer');
   if (mvEl && typeof mvEl.pause === 'function') mvEl.pause();
-
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
-
-  document.querySelectorAll(
-    '#modal-viewer-wrap .modal-photo, #modal-viewer-wrap model-viewer, ' +
-    '#modal-viewer-wrap .mv-loading-overlay, #modal-viewer-wrap .mv-ar-btn-wrap, ' +
-    '#modal-viewer-wrap .steam-canvas'
-  ).forEach(el => el.remove());
-
+  document.querySelectorAll('#modal-viewer-wrap .modal-photo, #modal-viewer-wrap model-viewer, #modal-viewer-wrap .mv-loading-overlay, #modal-viewer-wrap .mv-ar-btn-wrap')
+    .forEach(el => el.remove());
   document.getElementById('mv-ar-badge').classList.remove('visible');
 }
 
-/* ─────────────────────────────────────────────────────────────────
-   GLOBAL EVENT LISTENERS
-───────────────────────────────────────────────────────────────── */
 document.addEventListener('visibilitychange', () => {
   const mvEl = document.querySelector('#modal-viewer-wrap model-viewer');
   if (!mvEl) return;
-  document.hidden
-    ? (typeof mvEl.pause === 'function' && mvEl.pause())
-    : (typeof mvEl.play  === 'function' && mvEl.play());
+  document.hidden ? (typeof mvEl.pause==='function' && mvEl.pause()) : (typeof mvEl.play==='function' && mvEl.play());
 });
 
 document.getElementById('modal-close').addEventListener('click', closeModal);
@@ -1056,9 +1043,6 @@ document.getElementById('lang-select').addEventListener('change', e => {
   renderTabs(); renderItems();
 });
 
-/* ─────────────────────────────────────────────────────────────────
-   INIT — fetch sheet CSV and render menu
-───────────────────────────────────────────────────────────────── */
 async function init() {
   const loadingEl = document.getElementById('loading-state');
   const container = document.getElementById('items-container');
