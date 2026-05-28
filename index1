@@ -676,16 +676,6 @@ const DISH_IMAGES = {
   'shioramen':        '3d-model/ShioRamen/shioramen.png',
   'shoyuramen':       '3d-model/ShoyuRamen/shoyuramen.png',
   'tantanmen':        '3d-model/Tantanman/Tantanmen.png',
-  'agedashi tofu':    '3d-model/Agedashi-Tofu/Agedashi-Tofu.png',
-  'edamame':          '3d-model/Edamame/Edamame.png',
-  'gyoza':            '3d-model/Gyoza/Gyoza.png',
-  'karaage':          '3d-model/Karaage/Karaage.png',
-  'matcha ice cream': '3d-model/Matcha-Ice-Cream/Matcha-Ice-Cream.png',
-  'miso soup':        '3d-model/Miso-Soup/Miso-Soup.png',
-  'ramen':            '3d-model/Ramen/Ramen.png',
-  'salmon sashimi':   '3d-model/Salmon-Sashimi/Salmon-Sashimi.png',
-  'takoyaki':         '3d-model/Takoyaki/Takoyaki.png',
-  'tempura':          '3d-model/Tempura/Tempura.png',
 };
 
 const LOCAL_ASSETS = {
@@ -693,16 +683,6 @@ const LOCAL_ASSETS = {
   'shioramen':     { folder: 'ShioRamen',     file: 'ShioRamen',     scale: 0.2  },
   'shoyuramen':    { folder: 'ShoyuRamen',    file: 'ShoyuRamen',    scale: 0.2  },
   'tantanmen':     { folder: 'Tantanman',     file: 'Tantanman',     scale: 0.15 },
-  'agedashi tofu':    { folder: 'Agedashi-Tofu',    file: 'Agedashi-Tofu',    scale: 0.15 },
-  'edamame':          { folder: 'Edamame',           file: 'Edamame',          scale: 0.06 },
-  'gyoza':            { folder: 'Gyoza',             file: 'Gyoza',            scale: 0.3  },
-  'karaage':          { folder: 'Karaage',           file: 'Karaage',          scale: 0.15 },
-  'matcha ice cream': { folder: 'Matcha-Ice-Cream',  file: 'Matcha-Ice-Cream', scale: 0.3  },
-  'miso soup':        { folder: 'Miso-Soup',         file: 'Miso-Soup',        scale: 0.3  },
-  'ramen':            { folder: 'Ramen',             file: 'Ramen',            scale: 0.2  },
-  'salmon sashimi':   { folder: 'Salmon-Sashimi',    file: 'Salmon-Sashimi',   scale: 0.3  },
-  'takoyaki':         { folder: 'Takoyaki',          file: 'Takoyaki',         scale: 0.5  },
-  'tempura':          { folder: 'Tempura',           file: 'Tempura',          scale: 0.3  },
 };
 const ASSETS_BASE = '3d-model';
 
