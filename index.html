@@ -543,28 +543,32 @@ const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGnwFW8eziwrno
 
 const LOCAL_ASSETS = {
   'karamiso ramen': {
-    folder: 'KaramisoRamen',
-    file:   'KaramisoRamen',
-    scale:  0.3,
-    orbit:  '20deg 65deg 110%',
+    folder:     'KaramisoRamen',
+    file:       'KaramisoRamen',
+    posterFile: 'karamisoramen',
+    scale:      0.3,
+    orbit:      '20deg 65deg 110%',
   },
   'shio ramen': {
-    folder: 'ShioRamen',
-    file:   'ShioRamen',
-    scale:  0.3,
-    orbit:  '0deg 60deg 105%',
+    folder:     'ShioRamen',
+    file:       'ShioRamen',
+    posterFile: 'shioramen',
+    scale:      0.3,
+    orbit:      '0deg 60deg 105%',
   },
   'shoyu ramen': {
-    folder: 'ShoyuRamen',
-    file:   'ShoyuRamen',
-    scale:  0.3,
-    orbit:  '15deg 65deg 105%',
+    folder:     'ShoyuRamen',
+    file:       'ShoyuRamen',
+    posterFile: 'shoyuramen',
+    scale:      0.3,
+    orbit:      '15deg 65deg 105%',
   },
   'tantanmen': {
-    folder: 'Tantanman',
-    file:   'Tantanman',
-    scale:  0.3,
-    orbit:  '30deg 70deg 110%',
+    folder:     'Tantanman',
+    file:       'Tantanman',
+    posterFile: 'Tantanmen',
+    scale:      0.3,
+    orbit:      '30deg 70deg 110%',
   },
 };
 
@@ -672,8 +676,9 @@ function getLocalAssets(dishName) {
   const entry     = LOCAL_ASSETS[keyDirect] || LOCAL_ASSETS[keyNorm];
   if (!entry) return { posterPath:'', glbPath:'', usdzPath:'', scale:1, orbit:'0deg 75deg 105%', key:'' };
   const base = `${ASSETS_BASE}/${entry.folder}/${entry.file}`;
+  const posterName = entry.posterFile || entry.file;
   return {
-    posterPath: `${base}.png`,
+    posterPath: `${ASSETS_BASE}/${entry.folder}/${posterName}.png`,
     glbPath:    `${base}.glb`,
     usdzPath:   `${base}.usdz`,
     scale:      entry.scale,
