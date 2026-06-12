@@ -452,12 +452,12 @@
 const ASSETS_BASE = '3d-model';
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ96kFrQI4iBZw11-ICCLwI-4_By0eEE6pzi8EOCrI8EumjR5deqcdOo7u4ed7lMFuvE0TdvaYjv44k/pub?output=csv';
 
-// Adjusted object keys to completely lowercase without spaces or hyphens to match your file system screenshots
+// FIX: Completely lowercased both folders and files to mirror your repository screenshots exactly
 const LOCAL_ASSETS = {
   'almondcrustedcrispy': { folder:'almondcrustedcrispy', file:'almondcrustedcrispy', scale:.35 },
-  'shioramen':           { folder:'ShioRamen',           file:'ShioRamen',           scale:.35 },
-  'shoyuramen':          { folder:'ShoyuRamen',          file:'ShoyuRamen',          scale:.35 },
-  'tantanmen':           { folder:'Tantanmen',           file:'Tantanmen',           scale:.35 },
+  'shioramen':           { folder:'shioramen',           file:'shioramen',           scale:.35 },
+  'shoyuramen':          { folder:'shoyuramen',          file:'shoyuramen',          scale:.35 },
+  'tantanmen':           { folder:'tantanmen',           file:'tantanmen',           scale:.35 },
   'cheesyquiche':        { folder:'cheesyquiche',        file:'cheesyquiche',        scale:.35 },
   'crispyvegetable':     { folder:'crispyvegetable',     file:'crispyvegetable',     scale:.35 },
   'mangopetaltower':     { folder:'mangopetaltower',     file:'mangopetaltower',     scale:.35 }
@@ -476,19 +476,19 @@ const EMOJI_MAP = {
 const I18N = {
   en: { sub:'Authentic Japanese Cuisine',      badge:'Interactive 3D & AR Preview',           veg:'veg',        loading:'Loading...' },
   jp: { sub:'本物の日本料理',                   badge:'インタラクティブ3DとARプレビュー',          veg:'ベジ',       loading:'読み込み中…' },
-  kn: { sub:'ಅಧಿಕೃತ ಜಪಾನೀಸ್ ಆಹಾರ',         badge:'ಸಂವಾದಾತ್ಮಕ 3D ಮತ್ತು AR ಮುನ್ನೋಟ',       veg:'ಸಸ್ಯಹಾರಿ',   loading:'ಲೋಡ್ ಆಗುತ್ತಿದೆ…' },
+  kn: { sub:'ಅಧಿಕೃತ ಜಪಾನೀಸ್ ಆಹಾರ',         badge:'ಸंವಾದಾತ್ಮಕ 3D ಮತ್ತು AR ಮುನ್ನೋಟ',       veg:'ಸಸ್ಯಹಾರಿ',   loading:'ಲೋಡ್ ಆಗುತ್ತಿದೆ…' },
   ta: { sub:'உண்மையான ஜப்பானிய உணவு',       badge:'ஊடாடும் 3D மற்றும் AR மாதிரிக்காட்சி', veg:'சைவம்',      loading:'ஏற்றப்படுகிறது…' },
   ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'ഇന്ററാക്ടീവ് 3D & AR പ്രിവ്യൂ',          veg:'വെജ്',        loading:'ലോഡ് ചെയ്യുന്നു…' },
-  te: { sub:'ప్రామాణిక జపనీస్ వంటకాలు',     badge:'ఇంటరాక్టివ్ 3D & AR ప్రివ్యూ',           veg:'శాఖాహారం',   loading:'లోడ్ అవుతోంది…' }
+  te: { sub:'ప్రామాణిక జపనీస్ వంటకాలు',     badge:'ఇంటరాక్ティవ్ 3D & AR ప్రివ్యూ',           veg:'శాఖాహారం',   loading:'లోడ్ అవుతోంది…' }
 };
 
 const CAT_LABELS = {
   all:     { en:'All',        jp:'すべて',    kn:'ಎಲ್ಲವೂ',        ta:'அனைத்தும்',      ml:'എല്ലാം',        te:'అన్నీ' },
   starter: { en:'Starters',   jp:'スターター', kn:'ಆರಂಭಿಕಗಳು',    ta:'துவக்கிகள்',     ml:'സ്റ്റാർട്ടറുകൾ', te:'ప్రారంభకాలు' },
   ramen:   { en:'Ramen',      jp:'ラーメン',    kn:'ರಾಮೆನ್',        ta:'ராமன்',          ml:'രാമെൻ',           te:'రామెన్' },
-  sushi:   { en:'Sushi',      jp:'寿司',        kn:'ಸುಶಿ',          ta:'சுషి',           ml:'സുഷി',           te:'సుషీ' },
+  sushi:   { en:'Sushi',      jp:'寿司',        kn:'ಸುಶಿ',          ta:'சுஷி',           ml:'സുഷി',           te:'సుషీ' },
   rice:    { en:'Mains',      jp:'メイン',      kn:'ಮುಖ್ಯ ಆಹಾರ',    ta:'முக்கிய உணவு',  ml:'പ്രധാന ഭക്ഷണം',   te:'ప్రధాన వంటకాలు' },
-  drinks:  { en:'Desserts',   jp:'デザート',    kn:'デザート',      ta:'இனிப்புகள்',     ml:'ഡെസേർട്ടുകൾ',     te:'తీపి వంటకాలు' }
+  drinks:  { en:'Desserts',   jp:'デザート',    kn:'ಸಿಹಿತಿಂಡಿಗಳು',   ta:'இனிப்புகள்',     ml:'ഡെസേർട്ടുകൾ',     te:'తీపి వంటకాలు' }
 };
 
 /* ─────────────────────────────────────────────
@@ -556,7 +556,6 @@ function preloadAboveFoldPosters(dishes, count = 4) {
 /* ─────────────────────────────────────────────
    UTILITY PARSERS
 ───────────────────────────────────────────── */
-// Modified parsing layout to flatten alphanumeric strings to completely remove spacing and hyphenation crashes
 function normalizeKey(str) { return (str||'').toLowerCase().replace(/[\s-]+/g,'').trim(); }
 
 function getLocalAssets(dishName) {
@@ -639,7 +638,6 @@ function catLabel(cat) {
 }
 
 function renderTabs() {
-  // Corrected array tabs map to match Japanese culinary keys exactly instead of Italian coursework leftovers
   const cats = ['all','starter','ramen','sushi','rice','drinks'];
   const wrap = document.getElementById('tabs-inner');
   wrap.innerHTML = cats.map(c =>
