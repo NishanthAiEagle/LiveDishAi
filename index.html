@@ -11,6 +11,8 @@
   <link rel="dns-prefetch" href="https://unpkg.com" />
   <link rel="dns-prefetch" href="https://docs.google.com" />
 
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
   <link rel="preload"
         href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ96kFrQI4iBZw11-ICCLwI-4_By0eEE6pzi8EOCrI8EumjR5deqcdOo7u4ed7lMFuvE0TdvaYjv44k/pub?output=csv"
         as="fetch" crossorigin="anonymous" />
@@ -117,7 +119,7 @@
       font-size: 6px; color: var(--gold-lt);
     }
     .brush-divider::before { left: 18px; }
-    .brush-divider::after  { right: 18px; }
+    .brush-divider::after   { right: 18px; }
     .ar-badge {
       display: inline-flex; align-items: center; gap: 8px;
       border: 1px solid rgba(196,160,48,0.3); border-radius: 2px;
@@ -369,7 +371,6 @@ const SHEET_ID  = '1QAReLCzWLQEfNyY9V6Cg5VbGPqmbXh4XCZ_RCQSRlz0';
 const SHEET_GID = '0';
 const CSV_URL   = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
 
-// Clean asset map strictly looking up your lowercase/uppercase repository patterns
 const DISH_IMAGES = {
   'karamisoramen':    '3d-model/KaramisoRamen/karamisoramen.png',
   'shioramen':        '3d-model/ShioRamen/shioramen.png',
@@ -411,20 +412,20 @@ const EMOJI_MAP = {
 
 const I18N = {
   en: { sub:'Authentic Japanese Cuisine',      badge:'Interactive 3D & AR Preview',           veg:'veg',        loading:'Loading...' },
-  jp: { sub:'本物の日本料理',                   badge:'インタラクティブ3DとARプレビュー',          veg:'ベジ',       loading:'読み込み中…' },
-  kn: { sub:'ಅಧಿಕೃತ ಜಪಾನೀಸ್ ಆಹಾರ',         badge:'ಸಂವಾದಾತ್ಮಕ 3D ಮತ್ತು AR ಮುನ್ನೋಟ',       veg:'ಸಸ್ಯಹಾರಿ',   loading:'ಲೋಡ್ ಆಗುತ್ತಿದೆ…' },
-  ta: { sub:'உண்மையான ஜப்பானிய உணவு',       badge:'ஊடாடும் 3D மற்றும் AR மாதிரிக்காட்சி', veg:'சைவம்',      loading:'ஏற்றப்படுகிறது…' },
-  ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'இന്ററാക്ടീവ് 3D & AR പ്രിവ്യൂ',          veg:'വെജ്',        loading:'ലോഡ് ചെയ്യുന്നു…' },
-  te: { sub:'ప్రామాణిక జపనీస్ వంటకాలు',     badge:'ఇంటరాక్టివ్ 3D & AR ప్రివ్యూ',           veg:'శాఖాహారం',   loading:'లోడ్ అవుతోంది…' }
+  jp: { sub:'本物の日本料理',                    badge:'インタラクティブ3DとARプレビュー',          veg:'ベジ',       loading:'読み込み中…' },
+  kn: { sub:'ಅಧಿಕೃತ ಜಪಾನೀಸ್ ಆಹಾರ',         badge:'ಸಂವಾದಾತ್ಮక 3D ಮತ್ತು AR ಮುನ್ನೋಟ',        veg:'ಸಸ್ಯಹಾರಿ',   loading:'ಲೋಡ್ ಆಗುತ್ತಿದೆ…' },
+  ta: { sub:'உண்மையான ஜப்பானிய உணவு',       badge:'ஊடாடும் 3D மற்றும் AR மாதிரிக்காட்சி', veg:'சைவம்',       loading:'ஏற்றப்படுகிறது…' },
+  ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'ഇന്ററാക്ടീവ് 3D & AR പ്രിവ്യൂ',          veg:'വെജ്',        loading:'ലോഡ് ചെയ്യുന്നു…' },
+  te: { sub:'ప్రామాణిక జపనీస్ వంటకాలు',     badge:'ఇంటరాక్టివ్ 3D & AR ప్రివ్యూ',           veg:'శాఖాహారం',   loading:'ロード అవుతోంది…' }
 };
 
 const CAT_LABELS = {
-  all:     { en:'All',        jp:'すべて',    kn:'ಎಲ್ಲವೂ',        ta:'அனைத்தும்',      ml:'എല്ലാം',        te:'అన్నీ' },
-  starter: { en:'Starters',   jp:'スターター', kn:'ಆரಂಭಿಕಗಳು',    ta:'துவக்கிகள்',     ml:'സ്റ്റార్ട്ടറുകൾ', te:'ప్రారంభకాలు' },
-  ramen:   { en:'Ramen',      jp:'ラーメン',    kn:'ರಾಮೆನ್',        ta:'ராமன்',          ml:'രാമെൻ',           te:'రామెన్' },
-  sushi:   { en:'Sushi',      jp:'寿司',        kn:'ಸುಶಿ',          ta:'சுشی',           ml:'സുഷി',           te:'సుషీ' },
-  rice:    { en:'Mains',      jp:'メイン',      kn:'ಮುಖ್ಯ ಆಹಾರ',    ta:'முக்கிய உணவு',  ml:'പ്രധാന ഭക്ഷണം',   te:'ప్రధాన వంటకాలు' },
-  drinks:  { en:'Desserts',   jp:'デザート',    kn:'ಸಿಹಿತಿಂಡಿಗಳು',   ta:'இனிப்புகள்',     ml:'ഡെസേർട്ടുകൾ',     te:'తీపి వంటకాలు' }
+  all:      { en:'All',      jp:'すべて',    kn:'ಎಲ್ಲವೂ',        ta:'அனைத்தும்',      ml:'എല്ലാം',       te:'అన్నీ' },
+  starter: { en:'Starters',   jp:'スターター', kn:'ಆರಂಭಿಕಗಳು',    ta:'துவக்கிகள்',     ml:'സ്റ്റാർട്ടറുകൾ', te:'ప్రారంభకాలు' },
+  ramen:    { en:'Ramen',      jp:'ラーメン',    kn:'ರಾಮೆನ್',        ta:'ராமன்',          ml:'രാമെൻ',           te:'రామెన్' },
+  sushi:    { en:'Sushi',      jp:'寿司',        kn:'ಸುಶಿ',          ta:'சுشی',           ml:'സുഷി',           te:'సుషీ' },
+  rice:     { en:'Mains',      jp:'メイン',      kn:'ಮುಖ್ಯ ಆಹಾರ',    ta:'முக்கிய உணவு',  ml:'പ്രധാന ഭക്ഷണം',   te:'ప్రధాన వంటకాలు' },
+  drinks:   { en:'Desserts',   jp:'デザート',    kn:'ಸಿహితಿಂಡಿಗಳು',    ta:'இனிப்புகள்',     ml:'ഡെസేർട്ടുകൾ',      te:'తీపి వంటకాలు' }
 };
 
 let allDishes = [], rawRows = [], activeCategory = 'all', currentLang = 'en';
@@ -574,17 +575,6 @@ function renderItems() {
   );
 }
 
-let mvModulePromise = null;
-let mvModuleReady = false;
-
-function ensureModelViewerLoaded() {
-  if (!mvModulePromise) {
-    mvModulePromise = import('https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js')
-      .then(() => { mvModuleReady = true; });
-  }
-  return mvModulePromise;
-}
-
 function openModal(id) {
   const d = allDishes.find(x => x.id === id);
   if (!d) return;
@@ -602,6 +592,8 @@ function openModal(id) {
   scaleInfo.textContent = '';
 
   const vw = document.getElementById('modal-viewer-wrap');
+  
+  // FIXED selectors to cleanly wipe the custom objects out on switch
   vw.querySelectorAll('.modal-photo, #mv-wrapper, .mv-ar-btn-wrap, model-viewer').forEach(el => el.remove());
 
   const photoWrap = document.createElement('div');
@@ -629,7 +621,7 @@ function openModal(id) {
         font-family:'Cinzel',serif;font-size:12px;font-weight:600;
         letter-spacing:2px;cursor:not-allowed;white-space:nowrap;min-height:44px;opacity:0.6;
         box-shadow:0 4px 18px rgba(139,26,26,0.45);">
-        <span style="display:inline-block;width:12px;height:12px;border:2px solid rgba(245,237,224,0.3);border-top-color:var(--washi);border-radius:50%;animation:spin 0.8s linear infinite;"></span> Loading...
+        <span style="display:inline-block;width:12px;height:12px;border:2px solid rgba(245,237,224,0.3);border-top-color:var(--washi);border-radius:50%;animation:spin 0.8s linear infinite;"></span> Loading Model...
       </button>`;
     vw.insertBefore(arBtnWrap, arBadge);
     
@@ -665,7 +657,7 @@ function openModal(id) {
     slotBtn.style.display = 'none';
     mv.appendChild(slotBtn);
 
-    // FIX: View on Table button activation handler
+    // Activates button immediately when loaded
     mv.addEventListener('load', () => {
       photoWrap.style.display = 'none';
       mvWrap.style.opacity = '1';
@@ -674,10 +666,12 @@ function openModal(id) {
       scaleInfo.textContent = 'Actual portion size';
       
       const launchBtn = arBtnWrap.querySelector('.modal-ar-launch-btn');
-      launchBtn.disabled = false;
-      launchBtn.style.cursor = 'pointer';
-      launchBtn.style.opacity = '1';
-      launchBtn.innerHTML = '✦ View On Table';
+      if (launchBtn) {
+        launchBtn.disabled = false;
+        launchBtn.style.cursor = 'pointer';
+        launchBtn.style.opacity = '1';
+        launchBtn.innerHTML = '✦ View On Table';
+      }
     });
 
     arBtnWrap.querySelector('.modal-ar-launch-btn').addEventListener('click', (e) => {
