@@ -452,66 +452,37 @@
    CONFIGURATION & MAPS
    ───────────────────────────────────────────────────────────────────── */
 const ASSETS_BASE = '3d-model';
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTxvqvbnA4XcxM21xt7nOKv6aI1MonMepqeMbrrLxQEPzHH66DdM0yi1eRhcEMFn2fQaM_3scUGfJ_9/pub?output=csv';
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGnwFW8eziwrnoAVoycXzVGUE82qkV-6ZxqbOLoJgSUhHW40xWjN2PaYdhfqcHbO7ZgO8yxxHQ7x4f/pub?gid=2131216303&single=true&output=csv';
 
 const LOCAL_ASSETS = {
-  'almond-crusted-crispy': { folder:'Almond-Crusted-Crispy', file:'Almond-Crusted-Crispy', scale:.35 },
-  'crispy_vegetable':                 { folder:'Crispy_vegetable',                 file:'Crispy_vegetable',                 scale:.35 },
-  'mango-petal-tower':               { folder:'Mango-Petal-Tower',               file:'Mango-Petal-Tower',               scale:.35 },
-  'cheesy_quiche':                     { folder:'Cheesy_quiche',                     file:'Cheesy_quiche',                     scale:.35 },
+  'karamisoRamen': { folder:'KaramisoRamen', file:'KaramisoRamen', scale:.35 },
+  'shioRamen':     { folder:'ShioRamen', file:'ShioRamen',   scale:.35 },
+  'shoyuRamen':    { folder:'ShoyuRamen', file:'ShoyuRamen', scale:.35 },
+  'tantanman':     { folder:'Tantanman', file:'Tantanman', scale:.35 },
 };
 
 const EMOJI_MAP = {
-  'almond-crusted-crispy': '🍮',
-  'crispy_vegetable':                 '🍰',
-  'mango-petal-tower':               '🧀',
-  'cheesy_quiche':                     '🦑',
+  'karamisoRamen': '🍮',
+  'karamisoRamen':  '🍰',
+  'karamisoRamen': '🧀',
+  'karamisoRamen':  '🦑',
 };
 
 const I18N = {
-en: { sub:'Authentic Korean Cuisine',badge:'Interactive 3D & AR Preview',veg:'veg',loading:'Loading...',all:'All',starter:'Starters',main:'Main Course',dessert:'Desserts'}, 
-kr: { sub:'정통 한국 요리', badge:'인터랙티브 3D 및 AR 미리보기', veg:'채식', loading:'로딩 중...', all:'전체', starter:'애피타이저', main:'메인 코스', dessert:'디저트' },
-kn: { sub:'ಪ್ರಾಮಾಣಿಕ ಕೊರಿಯನ್ ಆಹಾರ', badge:'3D ಮತ್ತು AR ಮುನ್ನೋಟ', veg:'ಸಸ್ಯಾಹಾರಿ', loading:'ಲೋಡ್ ಆಗುತ್ತಿದೆ...', all:'ಎಲ್ಲಾ', starter:'ಸ್ಟಾರ್ಟರ್', main:'ಮುಖ್ಯ ಕೋರ್ಸ್', dessert:'ಡೆಸರ್ಟ್' },
-ta: { sub:'உண்மையான கொரிய உணவு', badge:'3D மற்றும் AR மாதிரிக்காட்சி', veg:'சைவம்', loading:'ஏற்றப்படுகிறது...', all:'அனைத்தும்', starter:'தொடக்க உணவு', main:'முக்கிய உணவு', dessert:'இனிப்பு' },
-ml: { sub:'ആധികാരിക കൊറിയൻ വിഭവങ്ങൾ', badge:'3D & AR പ്രിവ്യൂ', veg:'വെജ്', loading:'ലോഡ് ചെയ്യുന്നു...', all:'എല്ലാം', starter:'സ്റ്റാർട്ടർ', main:'പ്രധാന വിഭവം', dessert:'ഡെസേർട്ട്' },
-te: { sub:'ప్రామాణిక కొరియన్ వంటకాలు', badge:'3D & AR ప్రివ్యూ', veg:'శాఖాహారం', loading:'లోడ్ అవుతోంది...', all:'అన్నీ', starter:'స్టార్టర్', main:'ప్రధాన వంటకం', dessert:'డెజర్ట్' },
+  en: { sub:'Authentic Japanese Cuisine',     badge:'Interactive 3D & AR Preview',           veg:'veg',        loading:'読み込み中…' },
+  jp: { sub:'本物の日本料理',                  badge:'インタラクティブ3DとARプレビュー',          veg:'ベジ',       loading:'読み込み中…' },
+  kn: { sub:'ಅಧಿಕೃತ ಜಪಾನೀಸ್ ಆಹಾರ',         badge:'ಸಂವಾದಾತ್ಮಕ 3D ಮತ್ತು AR ಮುನ್ನೋಟ',       veg:'ಸಸ್ಯಹಾರಿ', loading:'ಲೋಡ್ ಆಗುತ್ತಿದೆ…' },
+  ta: { sub:'உண்மையான ஜப்பானிய உணவு',       badge:'ஊடாடும் 3D மற்றும் AR மாதிரிக்காட்சி', veg:'சைவம்',      loading:'ஏற்றப்படுகிறது…' },
+  ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'ഇന്ററാക്ടീവ് 3D & AR പ്രിവ്യൂ',         veg:'വെജ്',       loading:'ലോഡ് ചെയ്യുന്നു…' },
+  te: { sub:'ప్రామాణిక జపనీస్ వంటకాలు',     badge:'ఇంటరాక్టివ్ 3D & AR ప్రివ్యూ',          veg:'శాఖాహారం',   loading:'లోడ్ అవుతోంది…' },
 };
 const CAT_LABELS = {
-  all: {
-    en:'All',
-    kr:'전체',
-    kn:'ಎಲ್ಲಾ',
-    ta:'அனைத்தும்',
-    ml:'എല്ലാം',
-    te:'అన్నీ'
-  },
-
-  starter: {
-    en:'Starters',
-    kr:'애피타이저',
-    kn:'ಸ್ಟಾರ್ಟರ್',
-    ta:'தொடக்க உணவு',
-    ml:'സ്റ്റാർട്ടർ',
-    te:'స్టార్టర్'
-  },
-
-  'main-course': {
-    en:'Main Course',
-    kr:'메인 코스',
-    kn:'ಮುಖ್ಯ ಕೋರ್ಸ್',
-    ta:'முக்கிய உணவு',
-    ml:'പ്രധാന വിഭവം',
-    te:'ప్రధాన వంటకం'
-  },
-
-  dessert: {
-    en:'Desserts',
-    kr:'디저트',
-    kn:'ಡೆಸರ್ಟ್',
-    ta:'இனிப்பு',
-    ml:'ഡെസേർട്ട്',
-    te:'డెజర్ట్'
-  }
+  all:     { en:'All',        jp:'すべて',    kn:'ಎಲ್ಲವೂ',        ta:'அனைத்தும்',     ml:'എല്ലാം',         te:'అన్నీ' },
+  starter: { en:'Starters',   jp:'スターター', kn:'ಆರಂಭಿಕಗಳು',    ta:'துவக்கிகள்',    ml:'സ്റ്റാർട്ടറുകൾ', te:'ప్రారంభకాలు' },
+  ramen:   { en:'Ramen',      jp:'ラーメン',   kn:'ರಾಮೆನ್',        ta:'ராமன்',         ml:'രാമെൻ',          te:'రామెన్' },
+  sushi:   { en:'Sushi',      jp:'寿司',       kn:'ಸುಶಿ',          ta:'சுஷி',          ml:'സുഷി',           te:'సుషీ' },
+  rice:    { en:'Mains',      jp:'メイン',     kn:'ಮುಖ್ಯ ಆಹಾರ',   ta:'முக்கிய உணவு',  ml:'പ്രധാന ഭക്ഷണം',  te:'ప్రధాన వంటకాలు' },
+  drinks:  { en:'Desserts',   jp:'デザート',   kn:'ಸಿಹಿತಿಂಡಿಗಳು', ta:'இனிப்புகள்',    ml:'ഡെസേർട്ടുകൾ',    te:'తీపి వంటకాలు' },
 };
 
 
