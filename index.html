@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Japanese Cuisine — AR Menu</title>
-  <meta name="description" content="Interactive AR menu for Japanese Cuisine — authentic Japanese cuisine with 3D dish previews." />
+  <title>KAZAN Japanese Cuisine — AR Menu</title>
+  <meta name="description" content="Interactive AR menu for KAZAN authentic Japanese with 3D dish previews." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -93,7 +93,7 @@
       letter-spacing: 6px; color: rgba(245,237,224,0.4); margin-bottom: 10px; text-transform: uppercase;
     }
     .header-title {
-      font-family: var(--font-display); font-size: clamp(30px,6.5vw,54px);
+      font-family: var(--font-display); font-size: clamp(30px, 6.5vw, 54px);
       font-weight: 600; letter-spacing: 0.08em; line-height: 1; margin-bottom: 6px;
       background: linear-gradient(160deg, #f5ede0 30%, var(--gold-pale) 65%, #f5ede0 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -160,6 +160,23 @@
     .tab-btn.active { background: var(--crimson); color: var(--washi); border-color: var(--crimson); box-shadow: 0 2px 12px rgba(139,26,26,0.3); }
 
     .main { max-width: 740px; margin: 0 auto; padding: 1.5rem 1rem 5rem; }
+
+    .skeleton-grid { display: flex; flex-direction: column; gap: 10px; }
+    .skeleton-card {
+      background: rgba(243,232,215,0.5); border-radius: 1px;
+      padding: 1.1rem 1.25rem; border: 1px solid rgba(214,178,126,0.18);
+      border-left: 3px solid rgba(139,26,26,0.15);
+      animation: shimmer 1.4s ease-in-out infinite;
+    }
+    .skeleton-card .sk-row { display: flex; gap: 14px; }
+    .skeleton-card .sk-thumb { width: 68px; height: 68px; flex-shrink: 0; background: rgba(139,26,26,0.12); border-radius: 1px; }
+    .skeleton-card .sk-body { flex: 1; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+    .skeleton-card .sk-line { height: 12px; background: rgba(139,26,26,0.1); border-radius: 2px; }
+    .skeleton-card .sk-line.wide { width: 65%; }
+    .skeleton-card .sk-line.full { width: 100%; }
+    .skeleton-card .sk-line.mid  { width: 45%; }
+    .skeleton-card .sk-line.short { width: 30%; }
+    @keyframes shimmer { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
 
     .state-box { text-align: center; padding: 4rem 1rem; color: var(--ink-faint); }
     .state-box .spinner {
@@ -352,6 +369,7 @@ const SHEET_ID  = '1QAReLCzWLQEfNyY9V6Cg5VbGPqmbXh4XCZ_RCQSRlz0';
 const SHEET_GID = '0';
 const CSV_URL   = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
 
+// Clean asset map strictly looking up your lowercase/uppercase repository patterns
 const DISH_IMAGES = {
   'karamisoramen':    '3d-model/KaramisoRamen/karamisoramen.png',
   'shioramen':        '3d-model/ShioRamen/shioramen.png',
@@ -396,17 +414,17 @@ const I18N = {
   jp: { sub:'本物の日本料理',                   badge:'インタラクティブ3DとARプレビュー',          veg:'ベジ',       loading:'読み込み中…' },
   kn: { sub:'ಅಧಿಕೃತ ಜಪಾನೀಸ್ ಆಹಾರ',         badge:'ಸಂವಾದಾತ್ಮಕ 3D ಮತ್ತು AR ಮುನ್ನೋಟ',       veg:'ಸಸ್ಯಹಾರಿ',   loading:'ಲೋಡ್ ಆಗುತ್ತಿದೆ…' },
   ta: { sub:'உண்மையான ஜப்பானிய உணவு',       badge:'ஊடாடும் 3D மற்றும் AR மாதிரிக்காட்சி', veg:'சைவம்',      loading:'ஏற்றப்படுகிறது…' },
-  ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'ഇന്ററാക്ടീവ് 3D & AR പ്രിവ్యూ',          veg:'വെജ്',        loading:'ലോഡ് ചെയ്യുന്നു…' },
+  ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'இന്ററാക്ടീവ് 3D & AR പ്രിവ്യൂ',          veg:'വെജ്',        loading:'ലോഡ് ചെയ്യുന്നു…' },
   te: { sub:'ప్రామాణిక జపనీస్ వంటకాలు',     badge:'ఇంటరాక్టివ్ 3D & AR ప్రివ్యూ',           veg:'శాఖాహారం',   loading:'లోడ్ అవుతోంది…' }
 };
 
 const CAT_LABELS = {
   all:     { en:'All',        jp:'すべて',    kn:'ಎಲ್ಲವೂ',        ta:'அனைத்தும்',      ml:'എല്ലാം',        te:'అన్నీ' },
-  starter: { en:'Starters',   jp:'スターター', kn:'ಆರಂಭಿಕಗಳು',    ta:'துవക്കிகள்',     ml:'സ്റ്റార్ട്ടറുകൾ', te:'ప్రారంభకాలు' },
-  ramen:   { en:'Ramen',      jp:'ラーメン',    kn:'ರಾಮೆನ್',        ta:'ராமன்',          ml:'രാമെൻ',           te:'రామెൻ' },
-  sushi:   { en:'Sushi',      jp:'寿司',        kn:'ಸುಶಿ',          ta:'சுஷி',           ml:'சுষি',           te:'சுషీ' },
-  rice:    { en:'Mains',      jp:'メイン',      kn:'ಮುಖ್ಯ ಆಹಾರ',    ta:'ಮುக்கிய உணவு',  ml:'ప్రധാന ഭക്ഷണം',   te:'ప్రధాన వంటకాలు' },
-  drinks:  { en:'Desserts',   jp:'デザート',    kn:'ಸಿಹಿತಿಂಡಿಗಳು',   ta:'இனிப்புகள்',     ml:'ഡెసேർട്ടുകൾ',     te:'తీపి వంటకాలు' }
+  starter: { en:'Starters',   jp:'スターター', kn:'ಆரಂಭಿಕಗಳು',    ta:'துவக்கிகள்',     ml:'സ്റ്റార్ട്ടറുകൾ', te:'ప్రారంభకాలు' },
+  ramen:   { en:'Ramen',      jp:'ラーメン',    kn:'ರಾಮೆನ್',        ta:'ராமன்',          ml:'രാമെൻ',           te:'రామెన్' },
+  sushi:   { en:'Sushi',      jp:'寿司',        kn:'ಸುಶಿ',          ta:'சுشی',           ml:'സുഷി',           te:'సుషీ' },
+  rice:    { en:'Mains',      jp:'メイン',      kn:'ಮುಖ್ಯ ಆಹಾರ',    ta:'முக்கிய உணவு',  ml:'പ്രധാന ഭക്ഷണം',   te:'ప్రధాన వంటకాలు' },
+  drinks:  { en:'Desserts',   jp:'デザート',    kn:'ಸಿಹಿತಿಂಡಿಗಳು',   ta:'இனிப்புகள்',     ml:'ഡെസേർട്ടുകൾ',     te:'తీపి వంటకాలు' }
 };
 
 let allDishes = [], rawRows = [], activeCategory = 'all', currentLang = 'en';
@@ -556,6 +574,17 @@ function renderItems() {
   );
 }
 
+let mvModulePromise = null;
+let mvModuleReady = false;
+
+function ensureModelViewerLoaded() {
+  if (!mvModulePromise) {
+    mvModulePromise = import('https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js')
+      .then(() => { mvModuleReady = true; });
+  }
+  return mvModulePromise;
+}
+
 function openModal(id) {
   const d = allDishes.find(x => x.id === id);
   if (!d) return;
@@ -636,7 +665,7 @@ function openModal(id) {
     slotBtn.style.display = 'none';
     mv.appendChild(slotBtn);
 
-    // FIX: Keep button disabled until 'load' confirms model-viewer ready state
+    // FIX: View on Table button activation handler
     mv.addEventListener('load', () => {
       photoWrap.style.display = 'none';
       mvWrap.style.opacity = '1';
