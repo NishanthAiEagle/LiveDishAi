@@ -17,7 +17,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2 family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   </noscript>
 
   <style>
@@ -236,84 +236,44 @@
     .ar-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
 
     /* ── MODAL ── */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0; background: rgba(10,6,2,0.88);
-      z-index: 9000; align-items: flex-end; justify-content: center;
-      padding: 0; backdrop-filter: blur(2px);
-    }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,6,2,0.88); z-index: 9000; align-items: flex-end; justify-content: center; padding: 0; backdrop-filter: blur(2px); }
     @media (min-width: 540px) { .modal-overlay { align-items: center; padding: 1.5rem; } }
     .modal-overlay.open { display: flex; }
-    .modal-card {
-      background: #f3e8d7; border-top: 3px solid var(--crimson);
-      width: 100%; max-width: 520px; max-height: 92svh;
-      overflow-y: auto; overscroll-behavior: contain; position: relative;
-      animation: slideUp 0.28s cubic-bezier(0.22,1,0.36,1);
-    }
-    @media (min-width: 540px) {
-      .modal-card { border-top: none; border: 1px solid rgba(139,26,26,0.2); border-radius: 2px; animation: fadeIn 0.22s ease; }
-    }
+
+    .modal-card { background: var(--washi); border-top: 3px solid var(--crimson); width: 100%; max-width: 520px; max-height: 92svh; overflow-y: auto; overscroll-behavior: contain; position: relative; animation: slideUp 0.28s cubic-bezier(0.22,1,0.36,1); }
+    @media (min-width: 540px) { .modal-card { border-top: none; border: 1px solid rgba(139,26,26,0.2); border-radius: 2px; animation: fadeIn 0.22s ease; } }
     @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: none; opacity: 1; } }
     @keyframes fadeIn  { from { opacity: 0; transform: scale(0.96) translateY(8px); } to { opacity: 1; transform: none; } }
-    
-    .modal-viewer-wrap {
-      width: 100%; height: 300px;
-      background: linear-gradient(160deg, #120c05 0%, #1e1208 50%, #120c05 100%);
-      position: relative; overflow: hidden;
-    }
-    .modal-viewer-wrap::before {
-      content: ''; position: absolute; inset: 12px;
-      border: 1px solid rgba(196,160,48,0.18); pointer-events: none; z-index: 3;
-    }
+
+    .modal-viewer-wrap { width: 100%; height: 300px; background: linear-gradient(160deg, #120c05 0%, #1e1208 50%, #120c05 100%); position: relative; overflow: hidden; }
+    .modal-viewer-wrap .seigaiha-bg { opacity: 0.08; }
+    .modal-viewer-wrap::before { content: ''; position: absolute; inset: 12px; border: 1px solid rgba(196,160,48,0.18); pointer-events: none; z-index: 3; }
 
     #mv-wrapper { position: absolute; inset: 0; z-index: 2; opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
     #mv-wrapper.mv-visible { opacity: 1; pointer-events: auto; }
-
+    
     .mv-ar-badge {
-      position: absolute; top: 10px; left: 50%; transform: translateX(-50%) translateY(-8px);
-      background: rgba(20,12,4,0.92); border: 1px solid var(--gold);
-      padding: 4px 14px; font-family: var(--font-display); font-size: 9px; letter-spacing: 2px;
-      color: var(--gold-pale); text-transform: uppercase; opacity: 0; transition: opacity 0.4s, transform 0.4s;
-      pointer-events: none; z-index: 4; white-space: nowrap;
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%) translateY(-8px); background: rgba(20,12,4,0.92); border: 1px solid var(--gold);
+      padding: 4px 14px; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; color: var(--gold-pale); text-transform: uppercase;
+      opacity: 0; transition: opacity 0.4s, transform 0.4s; pointer-events: none; z-index: 4; white-space: nowrap;
     }
     .mv-ar-badge.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
-    .scale-info {
-      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-      background: rgba(20,12,4,0.85); border: 1px solid rgba(196,160,48,0.2);
-      padding: 4px 14px; font-family: var(--font-sans); font-size: 9px; letter-spacing: 2px;
-      color: rgba(245,237,224,0.45); text-transform: uppercase; white-space: nowrap; z-index: 4; pointer-events: none;
-    }
-    .modal-close {
-      position: absolute; top: 12px; right: 12px; width: 36px; height: 36px;
-      background: rgba(10,6,2,0.6); border: 1px solid rgba(196,160,48,0.2);
-      color: rgba(245,237,224,0.7); font-size: 16px; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; z-index: 10; transition: background 0.15s, border-color 0.15s; font-family: serif;
-    }
+    .scale-info { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(20,12,4,0.85); border: 1px solid rgba(196,160,48,0.2); padding: 4px 14px; font-family: 'Noto Sans JP', sans-serif; font-size: 9px; letter-spacing: 2px; color: rgba(245,237,224,0.45); text-transform: uppercase; white-space: nowrap; z-index: 4; pointer-events: none; }
+    .modal-close { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; background: rgba(10,6,2,0.6); border: 1px solid rgba(196,160,48,0.2); color: rgba(245,237,224,0.7); font-size: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: background 0.15s, border-color 0.15s; font-family: serif; }
     .modal-close:hover { background: var(--crimson); border-color: var(--crimson); color: var(--washi); }
 
     .modal-body { padding: 1.5rem 1.6rem 2rem; }
-    .modal-name { font-family: var(--font-display); font-size: 26px; font-weight: 600; letter-spacing: 0.05em; color: var(--ink); margin-bottom: 2px; }
-    .modal-jp { font-family: var(--font-serif); font-size: 14px; font-weight: 300; color: var(--ink-faint); letter-spacing: 3px; margin-bottom: 12px; }
-    .modal-desc { font-size: 13.5px; color: var(--ink-light); line-height: 1.75; padding: 12px 16px; border-left: 3px solid var(--crimson); background: rgba(139,26,26,0.04); margin-bottom: 18px; font-family: var(--font-sans); }
+    .modal-name { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 600; letter-spacing: 0.05em; color: var(--ink); margin-bottom: 2px; }
+    .modal-jp { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 300; color: var(--ink-faint); letter-spacing: 3px; margin-bottom: 12px; }
+    .modal-desc { font-size: 13.5px; color: var(--ink-light); line-height: 1.75; padding: 12px 16px; border-left: 3px solid var(--crimson); background: rgba(139,26,26,0.04); margin-bottom: 18px; font-family: 'Noto Sans JP', sans-serif; }
     .modal-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(139,26,26,0.15); }
-    .modal-price { font-family: var(--font-body); font-size: 32px; font-weight: 600; color: var(--ink); }
+    .modal-price { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: var(--ink); }
 
-    .site-footer {
-      text-align: center; padding: 1.8rem 1rem; font-size: 11px; letter-spacing: 2px;
-      color: var(--ink-faint); border-top: 1px solid rgba(139,26,26,0.15);
-      line-height: 2; font-family: var(--font-serif); background: rgba(245,237,224,0.5); position: relative;
-    }
-    .site-footer::before {
-      content: '✿  ✿  ✿'; display: block; color: var(--crimson);
-      opacity: 0.4; font-size: 14px; letter-spacing: 8px; margin-bottom: 8px;
-    }
+    .site-footer { text-align: center; padding: 1.8rem 1rem; font-size: 11px; letter-spacing: 2px; color: var(--ink-faint); border-top: 1px solid rgba(139,26,26,0.15); line-height: 2; font-family: 'Noto Serif JP', serif; background: rgba(245,237,224,0.5); position: relative; }
+    .site-footer::before { content: '✿  ✿  ✿'; display: block; color: var(--crimson); opacity: 0.4; font-size: 14px; letter-spacing: 8px; margin-bottom: 8px; }
     .menu-card.unavailable { opacity: 0.4; pointer-events: none; }
-    .funzone-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: linear-gradient(135deg, var(--crimson), var(--gold));
-      color: var(--washi); text-decoration: none; padding: 8px 16px;
-      font-family: var(--font-sans); font-size: 11px; font-weight: 500;
-      letter-spacing: 1px; box-shadow: 0 4px 14px rgba(139,26,26,0.4); transition: opacity 0.15s;
-    }
+
+    .funzone-btn { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, var(--crimson), var(--gold)); color: var(--washi); text-decoration: none; padding: 8px 16px; font-family: 'Noto Sans JP', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 1px; box-shadow: 0 4px 14px rgba(139,26,26,0.4); transition: opacity 0.15s; }
     .funzone-btn:hover { opacity: 0.85; }
   </style>
 </head>
@@ -335,7 +295,7 @@
     </select>
   </div>
   <div class="header-mon"></div>
-  <p class="header-brand">Japanese Cuisine</p>
+  <p class="header-kanji">日本料理</p>
   <h1 class="header-title">KAZAN</h1>
   <span class="header-title-sub">Authentic Japanese Cuisine</span>
   <div class="brush-divider"></div>
@@ -361,6 +321,7 @@
 <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Dish detail">
   <div class="modal-card">
     <div class="modal-viewer-wrap" id="modal-viewer-wrap">
+      <div class="seigaiha-bg"></div>
       <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
       <div id="modal-photo" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:1;"></div>
       <div id="mv-wrapper"></div>
@@ -391,7 +352,6 @@ const SHEET_ID  = '1QAReLCzWLQEfNyY9V6Cg5VbGPqmbXh4XCZ_RCQSRlz0';
 const SHEET_GID = '0';
 const CSV_URL   = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
 
-// FIXED: Adjusted to perfectly match the exact folder names on GitHub (KaramisoRamen, ShioRamen, ShoyuRamen, Tantanman)
 const DISH_IMAGES = {
   'karamisoramen':    '3d-model/KaramisoRamen/karamisoramen.png',
   'shioramen':        '3d-model/ShioRamen/shioramen.png',
@@ -436,7 +396,7 @@ const I18N = {
   jp: { sub:'本物の日本料理',                   badge:'インタラクティブ3DとARプレビュー',          veg:'ベジ',       loading:'読み込み中…' },
   kn: { sub:'ಅಧಿಕೃತ ಜಪಾನೀಸ್ ಆಹಾರ',         badge:'ಸಂವಾದಾತ್ಮಕ 3D ಮತ್ತು AR ಮುನ್ನೋಟ',       veg:'ಸಸ್ಯಹಾರಿ',   loading:'ಲೋಡ್ ಆಗುತ್ತಿದೆ…' },
   ta: { sub:'உண்மையான ஜப்பானிய உணவு',       badge:'ஊடாடும் 3D மற்றும் AR மாதிரிக்காட்சி', veg:'சைவம்',      loading:'ஏற்றப்படுகிறது…' },
-  ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'ഇന്ററാക്ടീവ് 3D & AR പ്രിവ്യൂ',          veg:'വെജ്',        loading:'ലോഡ് ചെയ്യുന്നു…' },
+  ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'இന്ററാക്ടീവ് 3D & AR പ്രിവ్యూ',          veg:'വെജ്',        loading:'ലോഡ് ചെയ്യുന്നു…' },
   te: { sub:'ప్రామాణిక జపనీస్ వంటకాలు',     badge:'ఇంటరాక్టివ్ 3D & AR ప్రివ్యూ',           veg:'శాఖాహారం',   loading:'లోడ్ అవుతోంది…' }
 };
 
@@ -444,7 +404,7 @@ const CAT_LABELS = {
   all:     { en:'All',        jp:'すべて',    kn:'ಎಲ್ಲವೂ',        ta:'அனைத்தும்',      ml:'എല്ലാം',        te:'అన్నీ' },
   starter: { en:'Starters',   jp:'スターター', kn:'ಆರಂಭಿಕಗಳು',    ta:'துவக்கிகள்',     ml:'സ്റ്റార్ട്ടറുകൾ', te:'ప్రారంభకాలు' },
   ramen:   { en:'Ramen',      jp:'ラーメン',    kn:'ರಾಮೆನ್',        ta:'ராமன்',          ml:'രാമെൻ',           te:'రామెన్' },
-  sushi:   { en:'Sushi',      jp:'寿司',        kn:'ಸುಶಿ',          ta:'சுషి',           ml:'సుషి',           te:'సుషీ' },
+  sushi:   { en:'Sushi',      jp:'寿司',        kn:'సుಶಿ',          ta:'சுషి',           ml:'సుഷി',           te:'సుషీ' },
   rice:    { en:'Mains',      jp:'メイン',      kn:'ಮುಖ್ಯ ಆಹಾರ',    ta:'ಮುக்கிய உணவு',  ml:'പ്രധാന ഭക്ഷണം',   te:'ప్రధాన వంటకాలు' },
   drinks:  { en:'Desserts',   jp:'デザート',    kn:'ಸಿಹಿತಿಂಡಿಗಳು',   ta:'இனிப்புகள்',     ml:'ഡெసേർട്ടുകൾ',     te:'తీపి వంటకాలు' }
 };
@@ -533,7 +493,6 @@ function catLabel(cat) {
   return map ? (map[currentLang] || map.en) : (cat.charAt(0).toUpperCase() + cat.slice(1));
 }
 
-// FIXED: Categories tabs rendering generation
 function renderTabs() {
   const cats = ['all', ...new Set(allDishes.map(d => d.category))];
   const wrap = document.getElementById('tabs-inner');
@@ -603,7 +562,7 @@ function openModal(id) {
   document.getElementById('modal-name').textContent = d.name;
   document.getElementById('modal-jp').textContent   = d.jp;
   document.getElementById('modal-desc').textContent = d.desc;
-  document.getElementById('modal-price').innerHTML  =
+  document.getElementById('modal-price').innerHTML =
     `<span style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:var(--ink-faint)">₹</span>${d.price.toLocaleString('en-IN')}`;
   document.getElementById('modal-tags').innerHTML   = tagHTML(d);
   document.getElementById('modal-tags2').innerHTML  = tagHTML(d);
@@ -614,12 +573,11 @@ function openModal(id) {
   scaleInfo.textContent = '';
 
   const vw = document.getElementById('modal-viewer-wrap');
-  vw.querySelectorAll('.modal-photo, model-viewer, .no-model, .mv-loading-overlay, .mv-ar-btn-wrap')
-    .forEach(el => el.remove());
+  vw.querySelectorAll('.modal-photo, #mv-wrapper, .mv-ar-btn-wrap, model-viewer').forEach(el => el.remove());
 
   const photoWrap = document.createElement('div');
   photoWrap.className = 'modal-photo';
-  photoWrap.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;';
+  photoWrap.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:1;';
   if (d.posterPath) {
     photoWrap.innerHTML = `
       <img src="${d.posterPath}" alt="${d.name}" style="width:100%;height:100%;object-fit:cover;"
@@ -633,7 +591,7 @@ function openModal(id) {
   if (d.glbPath) {
     const arBtnWrap = document.createElement('div');
     arBtnWrap.className = 'mv-ar-btn-wrap';
-    arBtnWrap.style.cssText = `position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:6;display:flex;gap:10px;align-items:center;`;
+    arBtnWrap.style.cssText = `position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:10px;align-items:center;`;
     arBtnWrap.innerHTML = `
       <button class="modal-ar-launch-btn" style="
         display:inline-flex;align-items:center;gap:8px;
@@ -648,8 +606,7 @@ function openModal(id) {
     
     const mvWrap = document.createElement('div');
     mvWrap.id = 'mv-wrapper';
-    mvWrap.className = 'mv-visible';
-    mvWrap.style.cssText = 'position:absolute;inset:0;z-index:2;';
+    mvWrap.style.cssText = 'position:absolute;inset:0;z-index:2;opacity:0;transition:opacity 0.35s ease;';
     vw.insertBefore(mvWrap, arBadge);
 
     const mv = document.createElement('model-viewer');
@@ -659,7 +616,7 @@ function openModal(id) {
     const s = (d.scale ?? 1).toFixed(6);
     mv.setAttribute('scale',          `${s} ${s} ${s}`);
     mv.setAttribute('ar',               '');
-    mv.setAttribute('ar-modes',         'webxr');
+    mv.setAttribute('ar-modes',         'webxr scene-viewer quick-look');
     mv.setAttribute('ar-placement',     'floor');
     mv.setAttribute('ar-scale',         'fixed');
     mv.setAttribute('camera-controls',  '');
@@ -681,12 +638,19 @@ function openModal(id) {
 
     mv.addEventListener('load', () => {
       photoWrap.style.display = 'none';
+      mvWrap.style.opacity = '1';
+      mvWrap.style.pointerEvents = 'auto';
       arBadge.classList.add('visible');
       scaleInfo.textContent = 'Actual portion size';
     });
 
-    arBtnWrap.querySelector('.modal-ar-launch-btn').addEventListener('click', () => {
-      try { mv.activateAR(); } catch(err) { console.warn(err); }
+    // FIXED: Dynamic touch-handler link hook mapping click handles to activateAR() cleanly
+    arBtnWrap.querySelector('.modal-ar-launch-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (mv && typeof mv.activateAR === 'function') {
+        mv.activateAR();
+      }
     });
 
     mvWrap.appendChild(mv);
