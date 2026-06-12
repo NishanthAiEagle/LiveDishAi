@@ -12,7 +12,7 @@
   <link rel="dns-prefetch" href="https://docs.google.com" />
 
   <link rel="preload"
-        href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTEkmIGoRgD1rQNmDgmY3lvB7WBOg86iOHHrS0MJ6qQiReuDHsUyX3YV7KoWXxTbefyBUWPTHpvUOt3/pub?output=csv"
+        href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ96kFrQI4iBZw11-ICCLwI-4_By0eEE6pzi8EOCrI8EumjR5deqcdOo7u4ed7lMFuvE0TdvaYjv44k/pub?output=csv"
         as="fetch" crossorigin="anonymous" />
 
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
@@ -40,7 +40,7 @@
       --crimson-mid:  #a32133;
       --crimson-lt:   #c74456;
       --gold:         #c39a5c;
-      --gold-lt:      #ddb777;
+      --gold-lt:      --gold;
       --gold-pale:    #f1d7a4;
       --sage:         #567a47;
       --sage-lt:      #dce9d0;
@@ -57,7 +57,6 @@
       font-family: var(--font-sans);
     }
 
-    /* Subtle fine-line grid overlay to evoke a premium wine list / menu feel instead of wave rings */
     .menu-texture-bg {
       position: absolute; inset: 0; opacity: 0.03;
       background-size: 20px 20px;
@@ -81,7 +80,7 @@
     }
     .site-header::after {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, transparent, var(--crimson-mid), var(--gold-lt), var(--crimson-mid), transparent);
+      background: linear-gradient(90deg, transparent, var(--crimson-mid), var(--gold), var(--crimson-mid), transparent);
     }
     .header-mon {
       width: 52px; height: 52px; border: 1.5px solid rgba(196,160,48,0.5);
@@ -102,7 +101,7 @@
     .header-title-sub {
       font-family: var(--font-serif); font-size: clamp(16px,4vw,24px);
       font-weight: 300; color: rgba(245,237,224,0.6); letter-spacing: 0.2em;
-      margin-bottom: 14px; display: block; italic;
+      margin-bottom: 14px; display: block; font-style: italic;
     }
     .header-sub {
       font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
@@ -115,7 +114,7 @@
     }
     .brush-divider::before, .brush-divider::after {
       content: '◆'; position: absolute; top: 50%; transform: translateY(-50%);
-      font-size: 6px; color: var(--gold-lt);
+      font-size: 6px; color: var(--gold);
     }
     .brush-divider::before { left: 18px; }
     .brush-divider::after  { right: 18px; }
@@ -338,7 +337,6 @@
     }
     .modal-ar-launch-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-    /* Adjusted color blend from beige to a rich transparent dark tint to match the wine aesthetic background */
     .site-footer {
       text-align: center; padding: 1.8rem 1rem; font-size: 11px; letter-spacing: 2px;
       background: rgba(40, 10, 15, 0.6); color: #d8b98e; border-top: 1px solid rgba(139,26,26,0.15);
@@ -379,11 +377,11 @@
     </select>
   </div>
   <div class="header-mon"></div>
-  <p class="header-brand">Japanese  Cuisine</p>
+  <p class="header-brand">Japanese Cuisine</p>
   <h1 class="header-title">KAZAN</h1>
-  <span class="header-title-sub">Authentic Japanese  Cuisine</span>
+  <span class="header-title-sub">Authentic Japanese Cuisine</span>
   <div class="brush-divider"></div>
-  <p class="header-sub" id="ui-sub-tag">Authentic Japanese  Cuisine</p>
+  <p class="header-sub" id="ui-sub-tag">Authentic Japanese Cuisine</p>
   <span class="ar-badge">
     <span class="ar-dot"></span>
     <span id="ui-ar-badge">Interactive 3D &amp; AR Preview</span>
@@ -454,37 +452,44 @@
 const ASSETS_BASE = '3d-model';
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ96kFrQI4iBZw11-ICCLwI-4_By0eEE6pzi8EOCrI8EumjR5deqcdOo7u4ed7lMFuvE0TdvaYjv44k/pub?output=csv';
 
+// Adjusted object keys to completely lowercase without spaces or hyphens to match your file system screenshots
 const LOCAL_ASSETS = {
-  'karamisoramen': { folder:'Almond-Crusted-Crispy', file:'Almond-Crusted-Crispy', scale:.35 },
-  'shioramen':                 { folder:'ShioRamen',                 file:'ShioRamen',                 scale:.35 },
-  'shoyuramen':               { folder:'ShoyuRamen',               file:'ShoyuRamen',               scale:.35 },
-  'tantanmen':                     { folder:'Tantanmen',                     file:'Tantanmen',                     scale:.35 },
+  'almondcrustedcrispy': { folder:'almondcrustedcrispy', file:'almondcrustedcrispy', scale:.35 },
+  'shioramen':           { folder:'ShioRamen',           file:'ShioRamen',           scale:.35 },
+  'shoyuramen':          { folder:'ShoyuRamen',          file:'ShoyuRamen',          scale:.35 },
+  'tantanmen':           { folder:'Tantanmen',           file:'Tantanmen',           scale:.35 },
+  'cheesyquiche':        { folder:'cheesyquiche',        file:'cheesyquiche',        scale:.35 },
+  'crispyvegetable':     { folder:'crispyvegetable',     file:'crispyvegetable',     scale:.35 },
+  'mangopetaltower':     { folder:'mangopetaltower',     file:'mangopetaltower',     scale:.35 }
 };
 
 const EMOJI_MAP = {
-  'KaramisoRamen': '🍮',
-  'ShioRamen':     '🍰',
-  'ShoyuRamen':    '🧀',
-  'Tantanmen':      '🦑',
+  'almondcrustedcrispy': '🍮',
+  'shioramen':           '🍰',
+  'shoyuramen':          '🧀',
+  'tantanmen':           '🦑',
+  'cheesyquiche':        '🥧',
+  'crispyvegetable':     '🥗',
+  'mangopetaltower':     '🗼'
 };
 
 const I18N = {
-  en: { sub:'Authentic Japanese Cuisine',     badge:'Interactive 3D & AR Preview',           veg:'veg',        loading:'読み込み中…' },
-  jp: { sub:'本物の日本料理',                  badge:'インタラクティブ3DとARプレビュー',          veg:'ベジ',       loading:'読み込み中…' },
-  kn: { sub:'ಅಧಿಕೃತ ಜಪಾನೀಸ್ ಆಹಾರ',         badge:'ಸಂವಾದಾತ್ಮಕ 3D ಮತ್ತು AR ಮುನ್ನೋಟ',       veg:'ಸಸ್ಯಹಾರಿ', loading:'ಲೋಡ್ ಆಗುತ್ತಿದೆ…' },
+  en: { sub:'Authentic Japanese Cuisine',      badge:'Interactive 3D & AR Preview',           veg:'veg',        loading:'Loading...' },
+  jp: { sub:'本物の日本料理',                   badge:'インタラクティブ3DとARプレビュー',          veg:'ベジ',       loading:'読み込み中…' },
+  kn: { sub:'ಅಧಿಕೃತ ಜಪಾನೀಸ್ ಆಹಾರ',         badge:'ಸಂವಾದಾತ್ಮಕ 3D ಮತ್ತು AR ಮುನ್ನೋಟ',       veg:'ಸಸ್ಯಹಾರಿ',   loading:'ಲೋಡ್ ಆಗುತ್ತಿದೆ…' },
   ta: { sub:'உண்மையான ஜப்பானிய உணவு',       badge:'ஊடாடும் 3D மற்றும் AR மாதிரிக்காட்சி', veg:'சைவம்',      loading:'ஏற்றப்படுகிறது…' },
-  ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'ഇന്ററാക്ടീവ് 3D & AR പ്രിവ്യൂ',         veg:'വെജ്',       loading:'ലോഡ് ചെയ്യുന്നു…' },
-  te: { sub:'ప్రామాణిక జపనీస్ వంటకాలు',     badge:'ఇంటరాక్టివ్ 3D & AR ప్రివ్యూ',          veg:'శాఖాహారం',   loading:'లోడ్ అవుతోంది…' },
-};
-const CAT_LABELS = {
-  all:     { en:'All',        jp:'すべて',    kn:'ಎಲ್ಲವೂ',        ta:'அனைத்தும்',     ml:'എല്ലാം',         te:'అన్నీ' },
-  starter: { en:'Starters',   jp:'スターター', kn:'ಆರಂಭಿಕಗಳು',    ta:'துவக்கிகள்',    ml:'സ്റ്റാർട്ടറുകൾ', te:'ప్రారంభకాలు' },
-  ramen:   { en:'Ramen',      jp:'ラーメン',   kn:'ರಾಮೆನ್',        ta:'ராமன்',         ml:'രാമെൻ',          te:'రామెన్' },
-  sushi:   { en:'Sushi',      jp:'寿司',       kn:'ಸುಶಿ',          ta:'சுஷி',          ml:'സുഷി',           te:'సుషీ' },
-  rice:    { en:'Mains',      jp:'メイン',     kn:'ಮುಖ್ಯ ಆಹಾರ',   ta:'முக்கிய உணவு',  ml:'പ്രധാന ഭക്ഷണം',  te:'ప్రధాన వంటకాలు' },
-  drinks:  { en:'Desserts',   jp:'デザート',   kn:'ಸಿಹಿತಿಂಡಿಗಳು', ta:'இனிப்புகள்',    ml:'ഡെസേർട്ടുകൾ',    te:'తీపి వంటకాలు' },
+  ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'ഇന്ററാക്ടീവ് 3D & AR പ്രിവ്യൂ',          veg:'വെജ്',        loading:'ലോഡ് ചെയ്യുന്നു…' },
+  te: { sub:'ప్రామాణిక జపనీస్ వంటకాలు',     badge:'ఇంటరాక్టివ్ 3D & AR ప్రివ్యూ',           veg:'శాఖాహారం',   loading:'లోడ్ అవుతోంది…' }
 };
 
+const CAT_LABELS = {
+  all:     { en:'All',        jp:'すべて',    kn:'ಎಲ್ಲವೂ',        ta:'அனைத்தும்',      ml:'എല്ലാം',        te:'అన్నీ' },
+  starter: { en:'Starters',   jp:'スターター', kn:'ಆರಂಭಿಕಗಳು',    ta:'துவக்கிகள்',     ml:'സ്റ്റാർട്ടറുകൾ', te:'ప్రారంభకాలు' },
+  ramen:   { en:'Ramen',      jp:'ラーメン',    kn:'ರಾಮೆನ್',        ta:'ராமன்',          ml:'രാമെൻ',           te:'రామెన్' },
+  sushi:   { en:'Sushi',      jp:'寿司',        kn:'ಸುಶಿ',          ta:'சுషి',           ml:'സുഷി',           te:'సుషీ' },
+  rice:    { en:'Mains',      jp:'メイン',      kn:'ಮುಖ್ಯ ಆಹಾರ',    ta:'முக்கிய உணவு',  ml:'പ്രധാന ഭക്ഷണം',   te:'ప్రధాన వంటకాలు' },
+  drinks:  { en:'Desserts',   jp:'デザート',    kn:'デザート',      ta:'இனிப்புகள்',     ml:'ഡെസേർട്ടുകൾ',     te:'తీపి వంటకాలు' }
+};
 
 /* ─────────────────────────────────────────────
    SESSION CACHING PROMISE
@@ -551,7 +556,8 @@ function preloadAboveFoldPosters(dishes, count = 4) {
 /* ─────────────────────────────────────────────
    UTILITY PARSERS
 ───────────────────────────────────────────── */
-function normalizeKey(str) { return (str||'').toLowerCase().replace(/\s+/g,'-').trim(); }
+// Modified parsing layout to flatten alphanumeric strings to completely remove spacing and hyphenation crashes
+function normalizeKey(str) { return (str||'').toLowerCase().replace(/[\s-]+/g,'').trim(); }
 
 function getLocalAssets(dishName) {
   const key = normalizeKey(dishName);
@@ -599,7 +605,7 @@ const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
 
 function rowToDish(row) {
   const truthy = v => ['true','yes','1'].includes((v||'').toLowerCase());
-  const sfx = {it:'_it',kn:'_kn',ta:'_ta',ml:'_ml',te:'_te'}[currentLang]||'';
+  const sfx = {jp:'_jp',kn:'_kn',ta:'_ta',ml:'_ml',te:'_te'}[currentLang]||'';
   const desc = row[`description${sfx}`] || row['description'] || '';
   const name = row[`name${sfx}`]        || row['name']        || '';
   const local = getLocalAssets(row['name']);
@@ -628,12 +634,13 @@ function tagHTML(d) {
 }
 
 function catLabel(cat) {
-  const langPack = I18N[currentLang] || I18N.en;
-  return langPack[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1));
+  const block = CAT_LABELS[cat];
+  return block ? (block[currentLang] || block.en) : (cat.charAt(0).toUpperCase() + cat.slice(1));
 }
 
 function renderTabs() {
-  const cats = ['all','starter','main-course','dessert'];
+  // Corrected array tabs map to match Japanese culinary keys exactly instead of Italian coursework leftovers
+  const cats = ['all','starter','ramen','sushi','rice','drinks'];
   const wrap = document.getElementById('tabs-inner');
   wrap.innerHTML = cats.map(c =>
     `<button class="tab-btn${c===activeCategory?' active':''}" data-cat="${c}">${catLabel(c)}</button>`
@@ -726,7 +733,7 @@ let currentDish = null;
 let elMV = null; 
 
 function showLoader() { elMvLoader.classList.remove('hidden'); }
-function hideLoader() { elMvLoader.classList.add('hidden'); }
+function hideLoader() { elMvLoader.add('hidden'); }
 function showMV()      { elMvWrapper.classList.add('mv-visible'); }
 function hideMV()      { elMvWrapper.classList.remove('mv-visible'); }
 
@@ -945,15 +952,15 @@ async function init() {
   }
 }
 
-/* ===========================
-       DISABLE RIGHT CLICK & DEV TOOLS
-    ============================ */
-    document.addEventListener('contextmenu', (e) => e.preventDefault());
-    document.onkeydown = function(e) {
-      if (e.keyCode === 123) return false; // F12
-      if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67 || e.keyCode === 75)) return false;
-      if (e.ctrlKey && e.keyCode === 85) return false; // Ctrl+U
-    };
+/* =========================================
+   DISABLE RIGHT CLICK & DEV TOOLS
+============================================ */
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+document.addEventListener('keydown', (e) => {
+  if (e.keyCode === 123) e.preventDefault(); // F12
+  if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67 || e.keyCode === 75)) e.preventDefault();
+  if (e.ctrlKey && e.keyCode === 85) e.preventDefault(); // Ctrl+U
+});
 
 init();
 </script>
