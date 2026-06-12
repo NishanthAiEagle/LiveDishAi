@@ -17,7 +17,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript>
-    <link href="https://fonts.googleapis.com/css2 family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   </noscript>
 
   <style>
@@ -396,17 +396,17 @@ const I18N = {
   jp: { sub:'本物の日本料理',                   badge:'インタラクティブ3DとARプレビュー',          veg:'ベジ',       loading:'読み込み中…' },
   kn: { sub:'ಅಧಿಕೃತ ಜಪಾನೀಸ್ ಆಹಾರ',         badge:'ಸಂವಾದಾತ್ಮಕ 3D ಮತ್ತು AR ಮುನ್ನೋಟ',       veg:'ಸಸ್ಯಹಾರಿ',   loading:'ಲೋಡ್ ಆಗುತ್ತಿದೆ…' },
   ta: { sub:'உண்மையான ஜப்பானிய உணவு',       badge:'ஊடாடும் 3D மற்றும் AR மாதிரிக்காட்சி', veg:'சைவம்',      loading:'ஏற்றப்படுகிறது…' },
-  ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'இന്ററാക്ടീവ് 3D & AR പ്രിവ్యూ',          veg:'വെജ്',        loading:'ലോഡ് ചെയ്യുന്നു…' },
+  ml: { sub:'ആധികാരിക ജാപ്പനീസ് വിഭവങ്ങൾ', badge:'ഇന്ററാക്ടീവ് 3D & AR പ്രിവ్యూ',          veg:'വെജ്',        loading:'ലോഡ് ചെയ്യുന്നു…' },
   te: { sub:'ప్రామాణిక జపనీస్ వంటకాలు',     badge:'ఇంటరాక్టివ్ 3D & AR ప్రివ్యూ',           veg:'శాఖాహారం',   loading:'లోడ్ అవుతోంది…' }
 };
 
 const CAT_LABELS = {
   all:     { en:'All',        jp:'すべて',    kn:'ಎಲ್ಲವೂ',        ta:'அனைத்தும்',      ml:'എല്ലാം',        te:'అన్నీ' },
-  starter: { en:'Starters',   jp:'スターター', kn:'ಆರಂಭಿಕಗಳು',    ta:'துவக்கிகள்',     ml:'സ്റ്റార్ട്ടറുകൾ', te:'ప్రారంభకాలు' },
-  ramen:   { en:'Ramen',      jp:'ラーメン',    kn:'ರಾಮೆನ್',        ta:'ராமன்',          ml:'രാമെൻ',           te:'రామెన్' },
-  sushi:   { en:'Sushi',      jp:'寿司',        kn:'సుಶಿ',          ta:'சுషి',           ml:'సుഷി',           te:'సుషీ' },
-  rice:    { en:'Mains',      jp:'メイン',      kn:'ಮುಖ್ಯ ಆಹಾರ',    ta:'ಮುக்கிய உணவு',  ml:'പ്രധാന ഭക്ഷണം',   te:'ప్రధాన వంటకాలు' },
-  drinks:  { en:'Desserts',   jp:'デザート',    kn:'ಸಿಹಿತಿಂಡಿಗಳು',   ta:'இனிப்புகள்',     ml:'ഡெసേർട്ടുകൾ',     te:'తీపి వంటకాలు' }
+  starter: { en:'Starters',   jp:'スターター', kn:'ಆರಂಭಿಕಗಳು',    ta:'துవക്കிகள்',     ml:'സ്റ്റార్ട്ടറുകൾ', te:'ప్రారంభకాలు' },
+  ramen:   { en:'Ramen',      jp:'ラーメン',    kn:'ರಾಮೆನ್',        ta:'ராமன்',          ml:'രാമെൻ',           te:'రామెൻ' },
+  sushi:   { en:'Sushi',      jp:'寿司',        kn:'ಸುಶಿ',          ta:'சுஷி',           ml:'சுষি',           te:'சுషీ' },
+  rice:    { en:'Mains',      jp:'メイン',      kn:'ಮುಖ್ಯ ಆಹಾರ',    ta:'ಮುக்கிய உணவு',  ml:'ప్రധാന ഭക്ഷണം',   te:'ప్రధాన వంటకాలు' },
+  drinks:  { en:'Desserts',   jp:'デザート',    kn:'ಸಿಹಿತಿಂಡಿಗಳು',   ta:'இனிப்புகள்',     ml:'ഡెసேർട്ടുകൾ',     te:'తీపి వంటకాలు' }
 };
 
 let allDishes = [], rawRows = [], activeCategory = 'all', currentLang = 'en';
@@ -593,14 +593,14 @@ function openModal(id) {
     arBtnWrap.className = 'mv-ar-btn-wrap';
     arBtnWrap.style.cssText = `position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:10px;align-items:center;`;
     arBtnWrap.innerHTML = `
-      <button class="modal-ar-launch-btn" style="
+      <button class="modal-ar-launch-btn" disabled style="
         display:inline-flex;align-items:center;gap:8px;
         background:var(--crimson);color:var(--washi);
         border:none;padding:11px 24px;
         font-family:'Cinzel',serif;font-size:12px;font-weight:600;
-        letter-spacing:2px;cursor:pointer;white-space:nowrap;min-height:44px;
+        letter-spacing:2px;cursor:not-allowed;white-space:nowrap;min-height:44px;opacity:0.6;
         box-shadow:0 4px 18px rgba(139,26,26,0.45);">
-        ✦ View On Table
+        <span style="display:inline-block;width:12px;height:12px;border:2px solid rgba(245,237,224,0.3);border-top-color:var(--washi);border-radius:50%;animation:spin 0.8s linear infinite;"></span> Loading...
       </button>`;
     vw.insertBefore(arBtnWrap, arBadge);
     
@@ -636,15 +636,21 @@ function openModal(id) {
     slotBtn.style.display = 'none';
     mv.appendChild(slotBtn);
 
+    // FIX: Keep button disabled until 'load' confirms model-viewer ready state
     mv.addEventListener('load', () => {
       photoWrap.style.display = 'none';
       mvWrap.style.opacity = '1';
       mvWrap.style.pointerEvents = 'auto';
       arBadge.classList.add('visible');
       scaleInfo.textContent = 'Actual portion size';
+      
+      const launchBtn = arBtnWrap.querySelector('.modal-ar-launch-btn');
+      launchBtn.disabled = false;
+      launchBtn.style.cursor = 'pointer';
+      launchBtn.style.opacity = '1';
+      launchBtn.innerHTML = '✦ View On Table';
     });
 
-    // FIXED: Dynamic touch-handler link hook mapping click handles to activateAR() cleanly
     arBtnWrap.querySelector('.modal-ar-launch-btn').addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
